@@ -520,5 +520,7 @@ CMakeLists.txt.user
 
 #####
 
+!bin/
 bin/*
-!bin/data
+!bin/data/*
+
