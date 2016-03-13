@@ -1,3 +1,5 @@
+!bin/data
+
 
 # Created by https://www.gitignore.io/api/linux,windows,osx,c++,c,xcode,visualstudio,visualstudiocode,vim,emacs,codeblocks,qt
 
@@ -41,7 +43,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
