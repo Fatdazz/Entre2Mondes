@@ -472,7 +472,6 @@ flycheck_*.el
 *.depend
 
 # generated directories
-bin/
 obj/
 
 
@@ -521,4 +520,5 @@ CMakeLists.txt.user
 
 #####
 
-!bin/data/**
+!bin/data/
+bin/*
