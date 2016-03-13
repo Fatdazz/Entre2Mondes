@@ -9,11 +9,13 @@
 #include "ofMain.h"
 #include "Flock2d.h"
 
-class insideWorld{
+class insideWorld: public ofFbo{
 public:
     
     
+
 };
+
 
 
 
