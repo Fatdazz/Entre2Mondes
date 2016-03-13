@@ -521,5 +521,4 @@ CMakeLists.txt.user
 
 #####
 
-!data/
-!data/shader
+!bin/data/**
