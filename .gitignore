@@ -521,4 +521,4 @@ CMakeLists.txt.user
 
 #####
 
-!bin/data/
+!data/*
