@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/linux,osx,windows,visualstudio,visualstudiocode,vim,emacs,sublimetext,xcode,latex,tex
+# Created by https://www.gitignore.io/api/linux,windows,osx,c++,c,xcode,visualstudio,visualstudiocode,vim,emacs,codeblocks,qt
 
 ### Linux ###
 *~
@@ -12,6 +12,27 @@
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
 
 
 ### OSX ###
@@ -41,25 +62,96 @@ Temporary Items
 .apdisk
 
 
-### Windows ###
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+### C++ ###
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
 
-# Folder config file
-Desktop.ini
+# Precompiled Headers
+*.gch
+*.pch
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Fortran module files
+*.mod
 
-# Windows shortcuts
-*.lnk
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+### C ###
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+
+
+### Xcode ###
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
 
 
 ### VisualStudio ###
@@ -371,265 +463,57 @@ flycheck_*.el
 /server/
 
 
-### SublimeText ###
-# cache files for sublime text
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
+### CodeBlocks ###
+# specific to CodeBlocks IDE
+*.cbp
+*.layout
+*.depend
 
-# workspace files are user-specific
-*.sublime-workspace
-
-# project files should be checked into the repository, unless a significant
-# proportion of contributors will probably not be using SublimeText
-# *.sublime-project
-
-# sftp configuration file
-sftp-config.json
+# generated directories
+bin/
+obj/
 
 
-### Xcode ###
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## Build generated
-build/
-DerivedData/
-
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
 
 
-### LaTeX ###
-*.acn
-*.acr
-*.alg
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.dvi
-*.fdb_latexmk
-*.fls
-*.glg
-*.glo
-*.gls
-*.idx
-*.ilg
-*.ind
-*.ist
-*.lof
-*.log
-*.lot
-*.maf
-*.mtc
-*.mtc0
-*.nav
-*.nlo
-*.out
-*.pdfsync
-*.ps
-*.run.xml
-*.snm
-*.synctex.gz
-*.toc
-*.vrb
-*.xdy
-*.tdo
 
+### Qt ###
+# C++ objects and libs
 
-### TeX ###
-## Core latex/pdflatex auxiliary files:
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.out
-*.toc
-*.fmt
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
 
-## Intermediate documents:
-*.dvi
-*-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
+# Qt-es
 
-## Bibliography auxiliary files (bibtex/biblatex/biber):
-*.bbl
-*.bcf
-*.blg
-*-blx.aux
-*-blx.bib
-*.brf
-*.run.xml
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
 
-## Build tool auxiliary files:
-*.fdb_latexmk
-*.synctex
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
+# QtCreator
 
-## Auxiliary and intermediate files from other packages:
-# algorithms
-*.alg
-*.loa
+*.autosave
 
-# achemso
-acs-*.bib
+#QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
 
-# amsthm
-*.thm
+#QtCtreator CMake
+CMakeLists.txt.user
 
-# beamer
-*.nav
-*.snm
-*.vrb
-
-# cprotect
-*.cpt
-
-# fixme
-*.lox
-
-#(r)(e)ledmac/(r)(e)ledpar
-*.end
-*.?end
-*.[1-9]
-*.[1-9][0-9]
-*.[1-9][0-9][0-9]
-*.[1-9]R
-*.[1-9][0-9]R
-*.[1-9][0-9][0-9]R
-*.eledsec[1-9]
-*.eledsec[1-9]R
-*.eledsec[1-9][0-9]
-*.eledsec[1-9][0-9]R
-*.eledsec[1-9][0-9][0-9]
-*.eledsec[1-9][0-9][0-9]R
-
-# glossaries
-*.acn
-*.acr
-*.glg
-*.glo
-*.gls
-*.glsdefs
-
-# gnuplottex
-*-gnuplottex-*
-
-# hyperref
-*.brf
-
-# knitr
-*-concordance.tex
-# TODO Comment the next line if you want to keep your tikz graphics files
-*.tikz
-*-tikzDictionary
-
-# listings
-*.lol
-
-# makeidx
-*.idx
-*.ilg
-*.ind
-*.ist
-
-# minitoc
-*.maf
-*.mlf
-*.mlt
-*.mtc
-*.mtc[0-9]
-*.mtc[1-9][0-9]
-
-# minted
-_minted*
-*.pyg
-
-# morewrites
-*.mw
-
-# mylatexformat
-*.fmt
-
-# nomencl
-*.nlo
-
-# sagetex
-*.sagetex.sage
-*.sagetex.py
-*.sagetex.scmd
-
-# sympy
-*.sout
-*.sympy
-sympy-plots-for-*.tex/
-
-# pdfcomment
-*.upa
-*.upb
-
-# pythontex
-*.pytxcode
-pythontex-files-*/
-
-# TikZ & PGF
-*.dpth
-*.md5
-*.auxlock
-
-# todonotes
-*.tdo
-
-# xindy
-*.xdy
-
-# xypic precompiled matrices
-*.xyc
-
-# endfloat
-*.ttt
-*.fff
-
-# Latexian
-TSWLatexianTemp*
-
-## Editors:
-# WinEdt
-*.bak
-*.sav
-
-# Texpad
-.texpadtmp
-
-# Kile
-*.backup
-
-# KBibTeX
-*~*
-
-### TeX Patch ###
-# pdfcomment
-.upa
-.upb
 
