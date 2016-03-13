@@ -1,4 +1,4 @@
-!bin/data
+!bin/data/*
 
 
 # Created by https://www.gitignore.io/api/linux,windows,osx,c++,c,xcode,visualstudio,visualstudiocode,vim,emacs,codeblocks,qt
