@@ -10,8 +10,8 @@ uniform sampler2DRect tex;
 in vec2 texVarying;
 
 void main() {
-  vec3 texRGB = texture(tex, texVarying).rgb;
-  vec3 maskRGB = texture(mask, texVarying).rgb;
+  vec3 texRGB = texture2DRect(tex, texVarying).rgb;
+  vec3 maskRGB = texture2DRect(mask, texVarying).rgb;
   outputColor = vec4(texRGB, maskRGB.r);
 	
 }

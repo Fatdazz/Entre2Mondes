@@ -62,7 +62,7 @@ void Entre2Mondes::draw(){
     ofDrawLine(0, j, projectorOutput.getCanvasWidth(), j);      
   }
   
-  //mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld).draw(0, 0);
+  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld).draw(0, 0);
 
   projectorOutput.end();
   
