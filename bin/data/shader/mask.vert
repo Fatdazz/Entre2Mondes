@@ -1,6 +1,6 @@
 // vertex shader
 
-#version 130
+#version 330
 
 uniform mat4 modelViewProjectionMatrix;
 in vec4 position;

@@ -1,6 +1,6 @@
 // fragment shader
 
-#version 130
+#version 330
 
 out vec4 outputColor;
 
