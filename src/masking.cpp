@@ -5,8 +5,6 @@ void Masking::setup(string shader){
   mask.load(shader);
   img.load("star_mask.png");  
 
-  
-  
 }
 
 ofFbo Masking::applyMaskToFbo(ofFbo fboMasked, ofFbo fboBackground){
@@ -14,14 +12,9 @@ ofFbo Masking::applyMaskToFbo(ofFbo fboMasked, ofFbo fboBackground){
   ofFbo res;
   res.allocate(fboMasked.getWidth(), fboMasked.getHeight());
 
-  
-  
-  
   res.begin();
   ofClear(255, 255, 255, 0);
 
-  
-  
   fboBackground.draw(0, 0);
 
   ofPushMatrix();  

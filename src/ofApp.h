@@ -51,4 +51,13 @@ class Entre2Mondes : public ofBaseApp{
   ofImage masker;
 
   ofShader shader;  
+
+
+  /////
+
+  ofImage maskTmp;
+  ofImage topLayer;
+  ofImage bottomLayer;
+  ofShader maskShader;
+
 };

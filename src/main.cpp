@@ -11,6 +11,7 @@ int main( ){
   settings.height = 768;
   ofCreateWindow(settings);
   */
+  
     ofSetupOpenGL(1024,768,OF_WINDOW);
     ofRunApp(new Entre2Mondes());
 

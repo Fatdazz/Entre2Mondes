@@ -2,7 +2,7 @@
 
 void InsideWorld::setup(int width, int height){
   // INIT FBO
-  insideWorld.allocate(width, height, GL_RGB); // TAILLE FENETRE DE JEU
+  insideWorld.allocate(width, height, GL_RGBA); // TAILLE FENETRE DE JEU
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
   insideWorld.end();
