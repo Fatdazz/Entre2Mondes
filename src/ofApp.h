@@ -28,7 +28,6 @@ class Entre2Mondes : public ofBaseApp{
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
-
   // PROJECTOR OUTPUT
   ofxProjectorBlend projectorOutput;
   int projectorTwoOffset;

@@ -3,8 +3,8 @@
 
 void Masking::setup(string shader){
   mask.load(shader);
-  img.load("star_mask.png");  
-
+  img.load("vitres.png");  
+  
 }
 
 ofFbo Masking::applyMaskToFbo(ofFbo fboMasked, ofFbo fboBackground){

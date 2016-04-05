@@ -1,8 +1,8 @@
  #include "ofApp.h"
 
 #define PROJECTOR_COUNT 2
-#define PROJECTOR_WIDTH 1024
-#define PROJECTOR_HEIGHT 768
+#define PROJECTOR_WIDTH 1920
+#define PROJECTOR_HEIGHT 1080
 #define PIXEL_OVERLAP 545
 
 //--------------------------------------------------------------
@@ -145,7 +145,7 @@ void Entre2Mondes::draw(){
 
 //--------------------------------------------------------------
 void Entre2Mondes::keyPressed(int key){
-  
+
   //hit spacebar to toggle the blending strip
   if (key == ' '){
     //toggling this variable effects whether the blend strip is shown

@@ -1,6 +1,6 @@
 #include "insideWorld.h"
 
-void InsideWorld::setup(int width, int height){
+void InsideWorld::setup(int width, int height) {
   // INIT FBO
   insideWorld.allocate(width, height, GL_RGBA); // TAILLE FENETRE DE JEU
   insideWorld.begin();
@@ -14,8 +14,8 @@ void InsideWorld::setup(int width, int height){
   for (int i=0; i<NumGroup; i++) {
     flock.addGoup();
         
-    int lulu= ofRandom(30, 100);
-    for (int j=0; j<100; j++) {
+    
+	for (int j = 0; j < 60; j++) {
       flock.addBoidGroup(i,
 			 ofVec2f(ofRandom(0, width), ofRandom(0, height)),
 			 20 ,
@@ -28,7 +28,7 @@ void InsideWorld::setup(int width, int height){
 			 2);
     }
   }
-  
+
   
 }
 
@@ -38,10 +38,10 @@ void InsideWorld::update(){
   
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
-  ofBackground(255, 0, 0);
+  ofBackground(0, 0, 0);
   for (int i=0; i<NumGroup; i++) {
     GroupBoid2d *g = flock.groupBoid.at(i);
-    ofSetColor(ofColor(100, 50 * i, 60 * i));
+	ofSetColor(ofColor(255, 0, 0));
     for (int j=0; j<g->boids.size(); j++) {      
       Boid2d *b = g->boids.at(j);
       
@@ -58,5 +58,4 @@ void InsideWorld::update(){
 void InsideWorld::draw(){
   insideWorld.draw(0, 0);
 }
-
 

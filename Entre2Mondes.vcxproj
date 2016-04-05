@@ -171,6 +171,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\controlPanel.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\insideWorld.cpp" />
@@ -228,8 +229,10 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="src\parametersGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\controlPanel.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\insideWorld.h" />
     <ClInclude Include="src\masking.h" />
@@ -466,6 +469,7 @@
     <ClInclude Include="..\..\..\addons\ofxProjectorBlend\src\ofxProjectorBlendShader.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="src\parametersGUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
