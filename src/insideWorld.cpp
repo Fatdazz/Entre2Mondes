@@ -14,13 +14,12 @@ void InsideWorld::setup(int width, int height) {
   for (int i=0; i<NumGroup; i++) {
     flock.addGoup();
         
-    
 	for (int j = 0; j < 60; j++) {
       flock.addBoidGroup(i,
 			 ofVec2f(ofRandom(0, width), ofRandom(0, height)),
-			 20 ,
-			 10 ,
-			 10 ,
+			 20,
+			 10,
+			 10,
 			 35,
 			 12,
 			 20,
@@ -29,13 +28,16 @@ void InsideWorld::setup(int width, int height) {
     }
   }
 
-  
+
 }
 
 
 void InsideWorld::update(){
   flock.update();
-  
+
+
+
+
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
@@ -51,6 +53,7 @@ void InsideWorld::update(){
       
     }
   }
+
   insideWorld.end();
 
 }

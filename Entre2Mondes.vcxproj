@@ -171,6 +171,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\boxMaskGenerator.cpp" />
     <ClCompile Include="src\controlPanel.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -232,6 +233,7 @@
     <ClCompile Include="src\parametersGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\boxMaskGenerator.h" />
     <ClInclude Include="src\controlPanel.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\insideWorld.h" />

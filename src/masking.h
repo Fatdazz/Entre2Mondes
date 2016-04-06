@@ -2,15 +2,19 @@
 
 #include "ofMain.h"
 
+#include "boxMaskGenerator.h"
+
 class Masking {
  public:  
 
-  void setup(string shader);
+	Masking();
   
-  ofFbo applyMaskToFbo(ofFbo fboMasked, ofFbo fboBackground);
-  ofFbo applyMaskToFbo(ofImage imageMasked, ofImage imageBackground);
-  
+  ofFbo applyMaskToFbo(const ofFbo& fboMasked,const ofFbo& fboBackground);
+  ofFbo applyMaskToFbo(const ofImage& imageMasked, const ofImage& imageBackground);
+  ofFbo applyMaskToFbo(ofFbo& fboMasked, ofFbo& fboBackground, ofFbo& mask);
+
  private:
-  ofShader mask;
-  ofImage img;  
+	ofFbo res;
+	ofShader mask;
+	ofImage img;  
 };

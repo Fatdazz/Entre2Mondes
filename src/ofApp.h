@@ -8,6 +8,7 @@
 #include "insideWorld.h"
 #include "outsideWorld.h"
 #include "masking.h"
+#include "boxMaskGenerator.h"
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -34,11 +35,9 @@ class Entre2Mondes : public ofBaseApp{
   int overlaped;
   // END PROJECTOR OUTPUT
 
-
   // XML SETTINGS
   ofxXmlSettings xml;
   // END XML SETTINGS
-
   
   InsideWorld insideWorld;
   OutsideWorld outsideWorld;
@@ -46,17 +45,14 @@ class Entre2Mondes : public ofBaseApp{
   Masking mask;
 
   ofImage tmp1;
-  ofImage tmp2;
+  ofImage tmp2; 
   ofImage masker;
 
   ofShader shader;  
 
+  BoxMaskGenerator gen;
 
-  /////
+  ofImage windowMask;
 
-  ofImage maskTmp;
-  ofImage topLayer;
-  ofImage bottomLayer;
-  ofShader maskShader;
-
+  ofFbo insideWorldMask;
 };

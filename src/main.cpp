@@ -40,8 +40,8 @@ int main( ){
 
 	shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(windowSettings);
   
-	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes);
-	shared_ptr<ControlPanel> boidParametersApp(new ControlPanel);
+	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
+	shared_ptr<ControlPanel> boidParametersApp(new ControlPanel());
 
 	boidParametersApp->setup();
 	entreDeuxMondesApp->setup();

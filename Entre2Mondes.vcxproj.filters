@@ -190,6 +190,9 @@
     <ClCompile Include="src\controlPanel.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\boxMaskGenerator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1116,6 +1119,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\controlPanel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\boxMaskGenerator.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
