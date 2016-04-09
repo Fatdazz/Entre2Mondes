@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "Flock2d.h"
 #include "parametersGUI.h"
+#include "masking.h"
+#include "ofxCv.h"
 
 class InsideWorld  {
  public:  
@@ -12,8 +14,10 @@ class InsideWorld  {
   void draw();
 
 
+  
   ofFbo insideWorld;
-
+  ofFbo insideWorldMask;
+  
   shared_ptr<ParametersGUI> parametersGui;
   
  private:
@@ -21,6 +25,17 @@ class InsideWorld  {
   Flock2d flock;
   ofImage img;
 
+  /* MASK */
+  ofImage staticMask;
+
+  BoxMaskGenerator gen;
+  ofImage dynamicMask;    
+  
+  ofxCv::ContourFinder insideWorldMaskContours;
+  
+
+  /* END MASK */
+  
   int NumGroup = 3;
   
 };

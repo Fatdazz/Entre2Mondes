@@ -1,11 +1,10 @@
 // fragment shader
-#version 150
 
 
 uniform sampler2DRect mask;
 uniform sampler2DRect tex;
 
-in vec2 texVarying;
+varying vec2 texVarying;
 
 void main() {
   vec3 texRGB = texture2DRect(tex, gl_TexCoord[0].st).rgb;

@@ -30,11 +30,8 @@ void Entre2Mondes::setup(){
 
   insideWorld.setup(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
   outsideWorld.setup(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
-  gen.setup(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
-  insideWorldMask.allocate(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
-	
-  windowMask.load("vitres.png");
-
+  ;
+	  
 }
 
 
@@ -67,42 +64,7 @@ void Entre2Mondes::draw(){
     ofDrawLine(0, j, projectorOutput.getCanvasWidth(), j);      
   }
   
-  ofFbo test;
-  test.begin();
-  ofClear(255, 255, 255, 0);
-  
-  test.end();
-
-
-  gen.resetMask();
-  ofPolyline line;
-  line.addVertex(10, 10);
-  line.addVertex(10, 100);
-  line.addVertex(100, 100);
-  line.addVertex(100, 10);
-  line.close();
-
-  gen.addBox(line);
-
-  line.clear();
-  line.addVertex(50, 50);
-  line.addVertex(50, 500);
-  line.addVertex(500, 500);
-  line.addVertex(500, 50);
-  line.close();
-
-  gen.addBox(line);
-  gen.generateMask();
-  
-  insideWorldMask.begin();
-  windowMask.draw(0, 0);
-  gen.getMaskFbo().draw(0, 0);
-  insideWorldMask.end();
-  
-
-
-  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, insideWorldMask).draw(0, 0);
-
+  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, insideWorld.insideWorldMask).draw(0, 0);
 
 
   projectorOutput.end();

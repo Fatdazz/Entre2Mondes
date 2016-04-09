@@ -9,6 +9,7 @@
 #include "outsideWorld.h"
 #include "masking.h"
 #include "boxMaskGenerator.h"
+#include "ofxCv.h"
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -44,15 +45,11 @@ class Entre2Mondes : public ofBaseApp{
 
   Masking mask;
 
-  ofImage tmp1;
-  ofImage tmp2; 
-  ofImage masker;
 
   ofShader shader;  
-
-  BoxMaskGenerator gen;
 
   ofImage windowMask;
 
   ofFbo insideWorldMask;
+  
 };

@@ -1,7 +1,7 @@
 #include "insideWorld.h"
 
 void InsideWorld::setup(int width, int height) {
-  // INIT FBO
+  // INIT FBO  
   insideWorld.allocate(width, height, GL_RGBA); // TAILLE FENETRE DE JEU
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
@@ -12,9 +12,9 @@ void InsideWorld::setup(int width, int height) {
   flock.setBoundmode(1);
 
   for (int i=0; i<NumGroup; i++) {    
-    flock.addGroup();
+    flock.addGoup();
         
-    for (int j = 0; j < 300; j++) {      
+    for (int j = 0; j < 100; j++) {      
       flock.addBoidGroup(i,
 			 ofVec2f(ofRandom(0, width), ofRandom(0, height)),
 			 20,
@@ -27,27 +27,59 @@ void InsideWorld::setup(int width, int height) {
 			 2);
     }
   }
-}
 
+  //staticMask.load("image8.914860.png");
+  staticMask.load("structure_boites.png");
+  staticMask.resize(width, height);
+
+  insideWorldMaskContours.setThreshold(200);
+  insideWorldMaskContours.setMinAreaRadius(50);
+  insideWorldMaskContours.setMaxAreaRadius(500);
+  insideWorldMaskContours.findContours(staticMask);
+  
+  auto attrPoints = insideWorldMaskContours.getContours();
+  for (int i = 0; i < attrPoints.size(); i++){
+    for (int j = 0 ; j < attrPoints[i].size()-1;j++){
+      flock.addAttrationLine(ofPoint(attrPoints[i][j].x, attrPoints[i][j].y), ofPoint(attrPoints[i][j+1].x, attrPoints[i][j+1].y), -200, 10, 10, 0);
+    }
+  }
+  gen.setup(width, height);
+  insideWorldMask.allocate(width, height);
+}
 
 void InsideWorld::update() {
   flock.update();
+    
+  insideWorldMask.begin();
+  ofClear(0, 0, 0, 0);
+  staticMask.draw(0, 0);
+  gen.getMaskFbo().draw(0, 0);
+  insideWorldMask.end(); 
 
+  
   insideWorld.begin(); // FBO
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
+
   for (int i=0; i<NumGroup; i++) {
-    std::shared_ptr<GroupBoid2d>& g = flock.groupBoid.at(i);
+    GroupBoid2d* g = flock.groupBoid.at(i);
     ofSetColor(ofColor(255, 0, 0));
     int boidNum = g->boids.size();
     for (int j=0; j < boidNum; j++) {      
-      std::shared_ptr<Boid2d>& b = g->boids.at(j);
+      Boid2d* b = g->boids.at(j);
       
-      ofDrawRectangle(b->position.x, b->position.y, 5,5);
-      float lm = 10.f;
-      ofDrawLine(b->position.x, b->position.y, b->position.x + b->velocite.x*lm, b->position.y + b->velocite.y*lm);
+	ofDrawRectangle(b->position.x, b->position.y, 5,5);
+	float lm = 10.f;
+	ofDrawLine(b->position.x, b->position.y, b->position.x + b->velocite.x*lm, b->position.y + b->velocite.y*lm);
       
+      }
     }
+  ofSetColor(ofColor::green);
+  for (int i = 0; i < flock.attractionLines.size(); i++){
+    ofSetLineWidth(3);
+    ofSetColor(ofColor::purple);
+    auto& t = flock.attractionLines[i];
+    ofDrawLine(t->a[0], t->a[1], t->b[0], t->b[1]);
   }
   insideWorld.end();
 
