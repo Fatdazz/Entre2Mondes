@@ -1,8 +1,8 @@
  #include "ofApp.h"
 
 #define PROJECTOR_COUNT 2
-#define PROJECTOR_WIDTH 1920
-#define PROJECTOR_HEIGHT 1080
+//#define PROJECTOR_WIDTH 1920
+//#define PROJECTOR_HEIGHT 1080
 #define PROJECTOR_WIDTH 960
 #define PROJECTOR_HEIGHT 540
 #define PIXEL_OVERLAP 545
@@ -10,8 +10,8 @@
 //--------------------------------------------------------------
 void Entre2Mondes::setup(){
 
-	//need this for alpha to come through
-	ofEnableAlphaBlending();
+  //need this for alpha to come through
+  ofEnableAlphaBlending();
   
   projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, PIXEL_OVERLAP);
   projectorOutput.gamma[0] = .5;
@@ -39,7 +39,8 @@ void Entre2Mondes::setup(){
 
 
 //--------------------------------------------------------------
-void Entre2Mondes::update(){  
+void Entre2Mondes::update(){
+  ofSetWindowTitle(to_string(ofGetFrameRate()));
   insideWorld.update();
   outsideWorld.update();  
 }

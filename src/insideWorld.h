@@ -22,7 +22,5 @@ class InsideWorld  {
   ofImage img;
 
   int NumGroup = 3;
-
-  
   
 };

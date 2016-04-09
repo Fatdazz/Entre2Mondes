@@ -36,7 +36,11 @@ public:
 	ofParameter<bool> trackHSB;
 	ofParameter<bool> trackRGB;
 
-	ofImage flipImage;
+	ofParameter<int> h;
+	ofParameter<int> s;
+	ofParameter<int> b;
+
+	  ofImage flipImage;
 
 };
 

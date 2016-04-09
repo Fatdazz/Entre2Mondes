@@ -1,4 +1,6 @@
 // fragment shader
+#version 150
+
 
 uniform sampler2DRect mask;
 uniform sampler2DRect tex;

@@ -1,50 +1,57 @@
-#include "ControlPanel.h"
+#include "controlPanel.h"
 
 using namespace ofxCv;
 using namespace cv;
 
 void ControlPanel::setup() {
-	kinect.init();
-	kinect.open();
+  kinect.init();
+  kinect.open();
 
-	contourFinder.setMinAreaRadius(10);
-	contourFinder.setMaxAreaRadius(150);
-	//contourFinder.setInvert(true); // find black instead of white
+  contourFinder.setMinAreaRadius(10);
+  contourFinder.setMaxAreaRadius(150);
+  //contourFinder.setInvert(true); // find black instead of white
 
-	gui.setup();
-	gui.add(threshold.set("Threshold", 128, 0, 255));
-	gui.add(trackH.set("Track Hue", true));
-	gui.add(trackHS.set("Track Hue/Saturation", false));
-	gui.add(trackHSB.set("Track Hue/Saturation/Brightness", false));
-	gui.add(trackRGB.set("Track Red/Green/Blue", false));
+  gui.setup();
+  gui.add(threshold.set("Threshold", 128, 0, 255));
+  gui.add(trackH.set("Track Hue", false));
+  gui.add(trackHS.set("Track Hue/Saturation", false));
+  gui.add(trackHSB.set("Track Hue/Saturation/Brightness", true));
+  gui.add(trackRGB.set("Track Red/Green/Blue", false));
+	
+  gui.add(h.set("Hue value", 128, 0, 255));
+  gui.add(s.set("Saturation value", 128, 0, 255));
+  gui.add(b.set("Brightness value", 128, 0, 255));	
 
 }
 
 void ControlPanel::update() {
-	kinect.update();
 
-	if (kinect.isFrameNew()) {
+  targetColor.setHsb(h, s, b);
+  
+  kinect.update();
 
-		flipImage = kinect.getPixels();
-		flipImage.mirror(true, true);
+  if (kinect.isFrameNew()) {
+
+    flipImage = kinect.getPixels();
+    flipImage.mirror(true, true);
 
 		
-		if (trackH) {
-			contourFinder.setTargetColor(targetColor, TRACK_COLOR_H);
-		}
-		else if (trackHS) {
-			contourFinder.setTargetColor(targetColor, TRACK_COLOR_HS);
-		}
-		else if (trackHSB) {
-			contourFinder.setTargetColor(targetColor, TRACK_COLOR_HSV);
-		}
-		else if (trackRGB) {
-			contourFinder.setTargetColor(targetColor, TRACK_COLOR_RGB);
-		}
+    if (trackH) {
+      contourFinder.setTargetColor(targetColor, TRACK_COLOR_H);
+    }
+    else if (trackHS) {
+      contourFinder.setTargetColor(targetColor, TRACK_COLOR_HS);
+    }
+    else if (trackHSB) {
+      contourFinder.setTargetColor(targetColor, TRACK_COLOR_HSV);
+    }
+    else if (trackRGB) {
+      contourFinder.setTargetColor(targetColor, TRACK_COLOR_RGB);
+    }
 		
-		contourFinder.setThreshold(threshold);
-		contourFinder.findContours(flipImage.getPixels());
-	}
+    contourFinder.setThreshold(threshold);
+    contourFinder.findContours(flipImage.getPixels());
+  }
 }
 
 void ControlPanel::draw() {
@@ -59,8 +66,7 @@ void ControlPanel::draw() {
 		ofSetColor(0, 200, 0);
 		ofPolyline contours = ofxCv::toOf(contourFinder.getContour(i));
 		contours.draw();
-	}
-	
+	}	
 
 	gui.draw();
 
@@ -73,7 +79,8 @@ void ControlPanel::draw() {
 }
 
 void ControlPanel::mousePressed(int x, int y, int button) {
-	targetColor = flipImage.getPixels().getColor(x, y);
+  targetColor = flipImage.getPixels().getColor(x, y);
+  //targetColor.getHsb(&h, &s, &b);
 }
 
 void ControlPanel::keyPressed(int key){
