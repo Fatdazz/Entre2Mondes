@@ -26,29 +26,44 @@ void InsideWorld::setup(int width, int height) {
 			 1000,
 			 2);
     }
-  }
+  }  
 
-  //staticMask.load("image8.914860.png");
-  staticMask.load("structure_boites.png");
+  staticMask.load("image8.914860.png");
+  
   staticMask.resize(width, height);
-
+  
+  dynamicMask.load("structure_boites.png");
+  dynamicMask.resize(width, height);
+    
   insideWorldMaskContours.setThreshold(200);
   insideWorldMaskContours.setMinAreaRadius(50);
   insideWorldMaskContours.setMaxAreaRadius(500);
   insideWorldMaskContours.findContours(staticMask);
   
-  auto attrPoints = insideWorldMaskContours.getContours();
-  for (int i = 0; i < attrPoints.size(); i++){
-    for (int j = 0 ; j < attrPoints[i].size()-1;j++){
-      flock.addAttrationLine(ofPoint(attrPoints[i][j].x, attrPoints[i][j].y), ofPoint(attrPoints[i][j+1].x, attrPoints[i][j+1].y), -200, 10, 10, 0);
-    }
-  }
+  
+
   gen.setup(width, height);
   insideWorldMask.allocate(width, height);
 }
 
 void InsideWorld::update() {
   flock.update();
+
+  gen.resetMask();
+  
+  insideWorldMaskContours.findContours(dynamicMask);
+  for (int i = 0; i < insideWorldMaskContours.getContours().size(); i++){    
+    gen.addBox(ofxCv::toOf(insideWorldMaskContours.getContour(i)));
+  }
+  
+  auto& attrPoints = insideWorldMaskContours.getContours();
+  for (int i = 0; i < attrPoints.size(); i++){
+    for (int j = 0 ; j < attrPoints[i].size()-1;j++){
+      flock.addAttrationLine(ofPoint(attrPoints[i][j].x, attrPoints[i][j].y), ofPoint(attrPoints[i][j+1].x, attrPoints[i][j+1].y), -200, 10, 10, 0);
+    }
+  }
+
+  gen.generateMask();
     
   insideWorldMask.begin();
   ofClear(0, 0, 0, 0);
@@ -61,21 +76,22 @@ void InsideWorld::update() {
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
 
-  for (int i=0; i<NumGroup; i++) {
+  for (int i=0; i < NumGroup; i++) {
     GroupBoid2d* g = flock.groupBoid.at(i);
     ofSetColor(ofColor(255, 0, 0));
     int boidNum = g->boids.size();
     for (int j=0; j < boidNum; j++) {      
       Boid2d* b = g->boids.at(j);
       
-	ofDrawRectangle(b->position.x, b->position.y, 5,5);
-	float lm = 10.f;
-	ofDrawLine(b->position.x, b->position.y, b->position.x + b->velocite.x*lm, b->position.y + b->velocite.y*lm);
-      
-      }
+      ofDrawRectangle(b->position.x, b->position.y, 5,5);
+      float lm = 10.f;
+      ofDrawLine(b->position.x, b->position.y, b->position.x + b->velocite.x*lm, b->position.y + b->velocite.y*lm);      
     }
+  }
+  
   ofSetColor(ofColor::green);
-  for (int i = 0; i < flock.attractionLines.size(); i++){
+  int sizeAttr = flock.attractionLines.size();
+  for (int i = 0; i < sizeAttr; i++){
     ofSetLineWidth(3);
     ofSetColor(ofColor::purple);
     auto& t = flock.attractionLines[i];

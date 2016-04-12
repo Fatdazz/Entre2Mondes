@@ -15,7 +15,9 @@ public:
 private:
 
 	ofFbo mask;
-	vector<ofMesh> boxes;
+	list<ofMesh> boxes;
+	ofTessellator tess;
+	ofMesh mesh;
 
 };
 
