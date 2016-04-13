@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CONTROL_PANEL
+#define CONTROL_PANEL
+
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "ofxCv.h"
@@ -11,8 +13,6 @@ public:
 	void setup();
 	void update();
 	void draw();
-
-	ofxKinect kinect;
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -40,7 +40,20 @@ public:
 	ofParameter<int> s;
 	ofParameter<int> b;
 
+	ofParameter<int> ROIH;
+	ofParameter<int> ROIY;
+
 	  ofImage flipImage;
 
+	  void setKinect(shared_ptr<ofxKinect>& kinect) {
+		  this->kinect = kinect;
+	  }
+
+	 shared_ptr<ofxKinect> kinect;
+
+
 };
+
+
+#endif
 

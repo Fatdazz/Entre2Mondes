@@ -4,8 +4,6 @@ using namespace ofxCv;
 using namespace cv;
 
 void ControlPanel::setup() {
-  kinect.init();
-  kinect.open();
 
   contourFinder.setMinAreaRadius(10);
   contourFinder.setMaxAreaRadius(150);
@@ -22,20 +20,24 @@ void ControlPanel::setup() {
   gui.add(s.set("Saturation value", 128, 0, 255));
   gui.add(b.set("Brightness value", 128, 0, 255));	
 
+  gui.add(ROIH.set("ROI H", 0, 0, kinect->getHeight()));
+  gui.add(ROIY.set("ROI Y", 0, 0, kinect->getHeight()));
 }
 
 void ControlPanel::update() {
+	ofSetWindowTitle(to_string(ofGetFrameRate()));
+
+	if (ROIH + ROIY > kinect->height) {
+		ROIH = kinect->height - ROIY;
+	}
 
   targetColor.setHsb(h, s, b);
-  
-  kinect.update();
 
-  if (kinect.isFrameNew()) {
+  if (kinect->isFrameNew()) {
 
-    flipImage = kinect.getPixels();
+    flipImage = kinect->getPixels();
     flipImage.mirror(true, true);
 
-		
     if (trackH) {
       contourFinder.setTargetColor(targetColor, TRACK_COLOR_H);
     }
@@ -60,13 +62,17 @@ void ControlPanel::draw() {
 
 	ofSetLineWidth(2);
 	ofSetColor(0, 250, 0);
-	//contourFinder.draw();
+	contourFinder.draw();
 	for (size_t i = 0; i < contourFinder.getContours().size(); i++)
 	{
 		ofSetColor(0, 200, 0);
 		ofPolyline contours = ofxCv::toOf(contourFinder.getContour(i));
 		contours.draw();
 	}	
+
+	ofSetLineWidth(3);
+	ofNoFill();
+	ofDrawRectangle(0, ROIY, kinect->getWidth(), ROIH);
 
 	gui.draw();
 
@@ -76,6 +82,8 @@ void ControlPanel::draw() {
 	ofDrawRectangle(-3, -3, 64 + 6, 64 + 6);
 	ofSetColor(targetColor);
 	ofDrawRectangle(0, 0, 64, 64);
+
+
 }
 
 void ControlPanel::mousePressed(int x, int y, int button) {

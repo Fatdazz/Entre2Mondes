@@ -35,32 +35,52 @@ void InsideWorld::setup(int width, int height) {
   dynamicMask.load("structure_boites.png");
   dynamicMask.resize(width, height);
     
+  insideWorldMaskContoursStatic.setThreshold(200);
+  insideWorldMaskContoursStatic.setMinAreaRadius(50);
+  insideWorldMaskContoursStatic.setMaxAreaRadius(500);
+  insideWorldMaskContoursStatic.findContours(staticMask);
+
   insideWorldMaskContours.setThreshold(200);
   insideWorldMaskContours.setMinAreaRadius(50);
   insideWorldMaskContours.setMaxAreaRadius(500);
-  insideWorldMaskContours.findContours(staticMask);
-  
-  
+
 
   gen.setup(width, height);
   insideWorldMask.allocate(width, height);
 }
 
-void InsideWorld::update() {
+void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
   flock.update();
 
   gen.resetMask();
-  
+  streamImage.setFromPixels(stream);
+  streamImage.mirror(true, true);
+
+  cv::Rect roi(0, control->ROIY, stream.getWidth(), control->ROIH);
+
+  resizedStream = ofxCv::toCv(streamImage);
+  resizedStream = resizedStream(roi);
+  cv::blur(resizedStream, resizedStream, cv::Size(50, 50));
+  streamImage.update();
+
   insideWorldMaskContours.findContours(dynamicMask);
   for (int i = 0; i < insideWorldMaskContours.getContours().size(); i++){    
     gen.addBox(ofxCv::toOf(insideWorldMaskContours.getContour(i)));
   }
   
+  flock.attractionLines.clear();
   auto& attrPoints = insideWorldMaskContours.getContours();
   for (int i = 0; i < attrPoints.size(); i++){
     for (int j = 0 ; j < attrPoints[i].size()-1;j++){
       flock.addAttrationLine(ofPoint(attrPoints[i][j].x, attrPoints[i][j].y), ofPoint(attrPoints[i][j+1].x, attrPoints[i][j+1].y), -200, 10, 10, 0);
     }
+  }
+
+  auto& attrPointsStatic = insideWorldMaskContoursStatic.getContours();
+  for (int i = 0; i < attrPointsStatic.size(); i++) {
+	  for (int j = 0; j < attrPointsStatic[i].size() - 1; j++) {
+		  flock.addAttrationLine(ofPoint(attrPointsStatic[i][j].x, attrPointsStatic[i][j].y), ofPoint(attrPointsStatic[i][j + 1].x, attrPointsStatic[i][j + 1].y), -200, 10, 10, 0);
+	  }
   }
 
   gen.generateMask();
@@ -97,7 +117,13 @@ void InsideWorld::update() {
     auto& t = flock.attractionLines[i];
     ofDrawLine(t->a[0], t->a[1], t->b[0], t->b[1]);
   }
+  //ofSetColor(0);
+  //ofImage i;
+  //ofxCv::toOf(resizedStream, i);
+  //streamImage.draw(0, 0);
   insideWorld.end();
+
+
 
 }
 

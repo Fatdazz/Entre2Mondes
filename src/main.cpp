@@ -25,7 +25,7 @@ int main( ){
 	
 	windowSettings.width = 1200;
 	windowSettings.height = 800;
-	windowSettings.setPosition(ofVec2f(1980*2, 50));
+	windowSettings.setPosition(ofVec2f(0, 100));
 	windowSettings.resizable = true;
 
 	shared_ptr<ofAppBaseWindow> controlPanel = ofCreateWindow(windowSettings);
@@ -33,21 +33,20 @@ int main( ){
 	// Settings for main window
 	windowSettings.resizable = false;
 	//windowSettings.windowMode = OF_FULLSCREEN;
-	windowSettings.shareContextWith = controlPanel;
-	windowSettings.setPosition(ofVec2f(0, 0));
+	//windowSettings.shareContextWith = controlPanel;
+	windowSettings.setPosition(ofVec2f(0, 100));
 	windowSettings.width = 1980;
 	windowSettings.height = 1080;
 
 	shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(windowSettings);
-  
-	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
-	shared_ptr<ControlPanel> boidParametersApp(new ControlPanel());
 
-	boidParametersApp->setup();
-	entreDeuxMondesApp->setup();
+	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
+	shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
+
+	entreDeuxMondesApp->control = controlPanelApp;
 
     ofRunApp(mainWindow, entreDeuxMondesApp);
-	ofRunApp(controlPanel, boidParametersApp);
+	ofRunApp(controlPanel, controlPanelApp);
 	ofRunMainLoop();
 
 }

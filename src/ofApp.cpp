@@ -8,7 +8,12 @@
 #define PIXEL_OVERLAP 545
 
 //--------------------------------------------------------------
-void Entre2Mondes::setup(){
+void Entre2Mondes::setup() {
+	kinect = make_shared<ofxKinect>();
+	kinect->init();
+	kinect->open();
+
+	control->setKinect(kinect);
 
   //need this for alpha to come through
   ofEnableAlphaBlending();
@@ -30,16 +35,22 @@ void Entre2Mondes::setup(){
 
   insideWorld.setup(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
   outsideWorld.setup(projectorOutput.getCanvasWidth(), projectorOutput.getCanvasHeight());
-  ;
+
 	  
 }
 
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
+	kinect->update();
+
   ofSetWindowTitle(to_string(ofGetFrameRate()));
-  insideWorld.update();
-  outsideWorld.update();  
+  
+  if (kinect->isFrameNew()) {
+	  insideWorld.update(kinect->getPixels(), control);
+  } 
+
+  outsideWorld.update();
 }
 
 //--------------------------------------------------------------
@@ -70,6 +81,7 @@ void Entre2Mondes::draw(){
   projectorOutput.end();
   
   projectorOutput.draw();
+
   
 }
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef OF_APP
+#define OF_APP
 
 #include "ofMain.h"
 
@@ -10,6 +11,8 @@
 #include "masking.h"
 #include "boxMaskGenerator.h"
 #include "ofxCv.h"
+#include "ofxKinect.h"
+#include "controlPanel.h"
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -51,5 +54,13 @@ class Entre2Mondes : public ofBaseApp{
   ofImage windowMask;
 
   ofFbo insideWorldMask;
-  
+
+  shared_ptr<ofxKinect> kinect;
+
+  shared_ptr<ControlPanel> control;
 };
+
+
+
+
+#endif

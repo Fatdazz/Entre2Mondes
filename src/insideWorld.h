@@ -5,15 +5,15 @@
 #include "parametersGUI.h"
 #include "masking.h"
 #include "ofxCv.h"
+#include "controlPanel.h"
+
 
 class InsideWorld  {
  public:  
   
   void setup(int width, int height);
-  void update();
+  void update(ofPixels stream, shared_ptr<ControlPanel>& control);
   void draw();
-
-
   
   ofFbo insideWorld;
   ofFbo insideWorldMask;
@@ -32,7 +32,11 @@ class InsideWorld  {
   ofImage dynamicMask;    
   
   ofxCv::ContourFinder insideWorldMaskContours;
+  ofxCv::ContourFinder insideWorldMaskContoursStatic;
   
+  cv::Mat resizedStream;
+
+  ofImage streamImage;
 
   /* END MASK */
   
