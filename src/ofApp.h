@@ -1,8 +1,5 @@
-#ifndef OF_APP
-#define OF_APP
-
+#pragma once
 #include "ofMain.h"
-
 #include "ofxProjectorBlend.h"
 #include "ofxXmlSettings.h"
 #include "Flock2d.h"
@@ -47,9 +44,7 @@ class Entre2Mondes : public ofBaseApp{
   OutsideWorld outsideWorld;
 
   Masking mask;
-
-
-  ofShader shader;  
+  ofShader shader;
 
   ofImage windowMask;
 
@@ -59,8 +54,3 @@ class Entre2Mondes : public ofBaseApp{
 
   shared_ptr<ControlPanel> control;
 };
-
-
-
-
-#endif

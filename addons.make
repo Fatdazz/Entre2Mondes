@@ -1,4 +1,4 @@
-ofxBoids_apoil
+ofxBoids
 ofxCv
 ofxGui
 ofxKinect

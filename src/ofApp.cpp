@@ -1,4 +1,4 @@
- #include "ofApp.h"
+#include "ofApp.h"
 
 #define PROJECTOR_COUNT 2
 //#define PROJECTOR_WIDTH 1920
@@ -9,11 +9,14 @@
 
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
+    
+    /*///// remplacé par camera
 	kinect = make_shared<ofxKinect>();
 	kinect->init();
 	kinect->open();
-
-	control->setKinect(kinect);
+    /////////
+	*/
+    control->setKinect(kinect);
 
   //need this for alpha to come through
   ofEnableAlphaBlending();
@@ -42,9 +45,11 @@ void Entre2Mondes::setup() {
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
-	kinect->update();
+	ofSetWindowTitle(to_string(ofGetFrameRate()));
+    
+    kinect->update();
 
-  ofSetWindowTitle(to_string(ofGetFrameRate()));
+  
   
   if (kinect->isFrameNew()) {
 	  insideWorld.update(kinect->getPixels(), control);
