@@ -43,7 +43,7 @@ public:
 	ofParameter<int> ROIH;
 	ofParameter<int> ROIY;
 
-	  ofImage flipImage;
+    ofImage flipImage;
 
 	  void setKinect(shared_ptr<ofxKinect>& kinect) {
 		  this->kinect = kinect;

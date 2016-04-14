@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "cv.h"
 
 class BoxMaskGenerator
 {

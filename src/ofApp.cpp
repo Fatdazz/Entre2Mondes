@@ -10,12 +10,12 @@
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
     
-    /*///// remplacé par camera
+    ///// remplacé par camera
 	kinect = make_shared<ofxKinect>();
 	kinect->init();
 	kinect->open();
     /////////
-	*/
+	
     control->setKinect(kinect);
 
   //need this for alpha to come through

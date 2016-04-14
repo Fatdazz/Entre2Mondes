@@ -18,7 +18,7 @@ class InsideWorld  {
   ofFbo insideWorld;
   ofFbo insideWorldMask;
   
-  shared_ptr<ParametersGUI> parametersGui;
+shared_ptr<ParametersGUI> parametersGui;
   
  private:
   

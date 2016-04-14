@@ -1,5 +1,5 @@
 //
-//  threadedCamera.hpp
+//  threadedBoids.hpp
 //  Entre2mondes
 //
 //  Created by FatDazz_mac on 14/04/2016.
@@ -9,15 +9,15 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Camera.h"
+#include "Flock2d.h"
 
-class threadedCamera: public ofThread{
+class threadedBoids: public ofThread{
 public:
-    camera  cam = camera(1);
-    threadedCamera();
-    ~threadedCamera();
+    
+    threadedBoids();
+    ~threadedBoids();
     
 private:
     void threadedFunction();
-
+    
 };

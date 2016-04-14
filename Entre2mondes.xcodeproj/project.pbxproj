@@ -71,6 +71,7 @@
 		B59194C82B8D802DA33EC465 /* HsbShiftPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A1741CC4F784D8B130531 /* HsbShiftPass.cpp */; };
 		B6840996567E78436F7ECFAB /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B047FF96258DC01792B272DB /* ETF.cpp */; };
 		B951AAE35209993B4E399E77 /* PixelatePass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7462D018F6D6E407E598A021 /* PixelatePass.cpp */; };
+		BC7F51B61CBF87E200898B9D /* cvEntre2mondes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC7F51B41CBF87E200898B9D /* cvEntre2mondes.cpp */; };
 		BCEB40771CBF03AD0082EDB5 /* boxMaskGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB40681CBF03AD0082EDB5 /* boxMaskGenerator.cpp */; };
 		BCEB40781CBF03AD0082EDB5 /* controlPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB406A1CBF03AD0082EDB5 /* controlPanel.cpp */; };
 		BCEB40791CBF03AD0082EDB5 /* insideWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB406C1CBF03AD0082EDB5 /* insideWorld.cpp */; };
@@ -81,6 +82,7 @@
 		BCEB407E1CBF03AD0082EDB5 /* parametersGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB40751CBF03AD0082EDB5 /* parametersGUI.cpp */; };
 		BCEB40811CBF04690082EDB5 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB407F1CBF04690082EDB5 /* Camera.cpp */; };
 		BCEB408B1CBF24790082EDB5 /* threadedCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB40891CBF24790082EDB5 /* threadedCamera.cpp */; };
+		BCEB408E1CBF2D8E0082EDB5 /* threadedBoids.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCEB408C1CBF2D8E0082EDB5 /* threadedBoids.cpp */; };
 		BE5ED1FDB18D5092CF3AACA0 /* PostProcessing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484F662699DFE8176E1B750F /* PostProcessing.cpp */; };
 		C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE75A3FBA2C2D87D14F06FE6 /* ObjectFinder.cpp */; };
 		C6C3882A0B0872D1485F3874 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE5E38D74C62B19279B65BC7 /* Client.cpp */; };
@@ -381,6 +383,8 @@
 		BAA4E229C246D7B615917505 /* ZoomBlurPass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ZoomBlurPass.h; path = ../../../addons/ofxPostProcessing/src/ZoomBlurPass.h; sourceTree = SOURCE_ROOT; };
 		BBAF9D981351C596CA67CAF9 /* hybridtracker.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = hybridtracker.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib/hybridtracker.hpp; sourceTree = SOURCE_ROOT; };
 		BBE3E908E4BB3468853C50ED /* ofxDelaunay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDelaunay.cpp; path = ../../../addons/ofxDelaunay/src/ofxDelaunay.cpp; sourceTree = SOURCE_ROOT; };
+		BC7F51B41CBF87E200898B9D /* cvEntre2mondes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cvEntre2mondes.cpp; sourceTree = "<group>"; };
+		BC7F51B51CBF87E200898B9D /* cvEntre2mondes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvEntre2mondes.h; sourceTree = "<group>"; };
 		BCEB40681CBF03AD0082EDB5 /* boxMaskGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = boxMaskGenerator.cpp; sourceTree = "<group>"; };
 		BCEB40691CBF03AD0082EDB5 /* boxMaskGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boxMaskGenerator.h; sourceTree = "<group>"; };
 		BCEB406A1CBF03AD0082EDB5 /* controlPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = controlPanel.cpp; sourceTree = "<group>"; };
@@ -400,6 +404,8 @@
 		BCEB40801CBF04690082EDB5 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		BCEB40891CBF24790082EDB5 /* threadedCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = threadedCamera.cpp; sourceTree = "<group>"; };
 		BCEB408A1CBF24790082EDB5 /* threadedCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threadedCamera.h; sourceTree = "<group>"; };
+		BCEB408C1CBF2D8E0082EDB5 /* threadedBoids.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = threadedBoids.cpp; sourceTree = "<group>"; };
+		BCEB408D1CBF2D8E0082EDB5 /* threadedBoids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threadedBoids.h; sourceTree = "<group>"; };
 		BF2F2AA872288D30F53983EF /* tilt.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = tilt.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/tilt.c; sourceTree = SOURCE_ROOT; };
 		BF88F02779DD820913ACEA06 /* ofxTCPClient.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTCPClient.cpp; path = ../../../addons/ofxNetwork/src/ofxTCPClient.cpp; sourceTree = SOURCE_ROOT; };
 		C07AAE715D8853EDA76BC909 /* GodRaysPass.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = GodRaysPass.cpp; path = ../../../addons/ofxPostProcessing/src/GodRaysPass.cpp; sourceTree = SOURCE_ROOT; };
@@ -1349,6 +1355,8 @@
 				BCEB406D1CBF03AD0082EDB5 /* insideWorld.h */,
 				BCEB40731CBF03AD0082EDB5 /* outsideWorld.cpp */,
 				BCEB40741CBF03AD0082EDB5 /* outsideWorld.h */,
+				BCEB408C1CBF2D8E0082EDB5 /* threadedBoids.cpp */,
+				BCEB408D1CBF2D8E0082EDB5 /* threadedBoids.h */,
 			);
 			name = entreDeuxMondes;
 			sourceTree = "<group>";
@@ -1362,6 +1370,8 @@
 				BCEB40691CBF03AD0082EDB5 /* boxMaskGenerator.h */,
 				BCEB40891CBF24790082EDB5 /* threadedCamera.cpp */,
 				BCEB408A1CBF24790082EDB5 /* threadedCamera.h */,
+				BC7F51B41CBF87E200898B9D /* cvEntre2mondes.cpp */,
+				BC7F51B51CBF87E200898B9D /* cvEntre2mondes.h */,
 			);
 			name = "Tr Signal";
 			sourceTree = "<group>";
@@ -1768,6 +1778,7 @@
 				F4135EEFC911E9ED211FB6F9 /* core.c in Sources */,
 				E55DEEF784A10419E444669E /* flags.c in Sources */,
 				21A059755481CC0BF969FD2D /* keep_alive.c in Sources */,
+				BCEB408E1CBF2D8E0082EDB5 /* threadedBoids.cpp in Sources */,
 				BCEB40791CBF03AD0082EDB5 /* insideWorld.cpp in Sources */,
 				BCEB407E1CBF03AD0082EDB5 /* parametersGUI.cpp in Sources */,
 				FCC16AB16073FF0581F50ED7 /* loader.c in Sources */,
@@ -1813,6 +1824,7 @@
 				B1747F12881D899DCA2647FC /* LUTPass.cpp in Sources */,
 				8072A86E35F7000F7CDEEF42 /* NoiseWarpPass.cpp in Sources */,
 				BCEB40781CBF03AD0082EDB5 /* controlPanel.cpp in Sources */,
+				BC7F51B61CBF87E200898B9D /* cvEntre2mondes.cpp in Sources */,
 				B951AAE35209993B4E399E77 /* PixelatePass.cpp in Sources */,
 				BE5ED1FDB18D5092CF3AACA0 /* PostProcessing.cpp in Sources */,
 				1E615236D6D182DED6C8A8B2 /* RenderPass.cpp in Sources */,
