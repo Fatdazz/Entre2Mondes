@@ -6,7 +6,7 @@ void InsideWorld::setup(int width, int height) {
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
   insideWorld.end();
-
+/*
   // INIT FLOCK
   flock.setBounds(0, 0, width,  height);
   flock.setBoundmode(1);
@@ -27,7 +27,10 @@ void InsideWorld::setup(int width, int height) {
 			 2);
     }
   }  
-
+*/
+    
+    boids.initBoids(width, height);
+    
   staticMask.load("image8.914860.png");
   
   staticMask.resize(width, height);
@@ -50,8 +53,9 @@ void InsideWorld::setup(int width, int height) {
 }
 
 void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
-  flock.update();
-
+    /*              à effacer alexandre
+    flock.update();
+    */
   gen.resetMask();
   streamImage.setFromPixels(stream);
   streamImage.mirror(true, true);
@@ -67,7 +71,8 @@ void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
   for (int i = 0; i < insideWorldMaskContours.getContours().size(); i++){    
     gen.addBox(ofxCv::toOf(insideWorldMaskContours.getContour(i)));
   }
-  
+    cout << "insideWorld line 70"<< endl;
+/*                  //////// Notion  de lines à trasféré
   flock.attractionLines.clear();
   auto& attrPoints = insideWorldMaskContours.getContours();
   for (int i = 0; i < attrPoints.size(); i++){
@@ -82,7 +87,7 @@ void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
 		  flock.addAttrationLine(ofPoint(attrPointsStatic[i][j].x, attrPointsStatic[i][j].y), ofPoint(attrPointsStatic[i][j + 1].x, attrPointsStatic[i][j + 1].y), -200, 10, 10, 0);
 	  }
   }
-
+*/
   gen.generateMask();
     
   insideWorldMask.begin();
@@ -95,7 +100,7 @@ void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
   insideWorld.begin(); // FBO
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
-
+/*                       ///// à effacer alexandre
   for (int i=0; i < NumGroup; i++) {
     GroupBoid2d* g = flock.groupBoid.at(i);
     ofSetColor(ofColor(255, 0, 0));
@@ -117,6 +122,9 @@ void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
     auto& t = flock.attractionLines[i];
     ofDrawLine(t->a[0], t->a[1], t->b[0], t->b[1]);
   }
+ */
+    
+    
   //ofSetColor(0);
   //ofImage i;
   //ofxCv::toOf(resizedStream, i);

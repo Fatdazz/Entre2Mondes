@@ -15,7 +15,6 @@ void Entre2Mondes::setup() {
 	kinect->init();
 	kinect->open();
     /////////
-	
     control->setKinect(kinect);
 
   //need this for alpha to come through

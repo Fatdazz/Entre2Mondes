@@ -6,6 +6,7 @@
 #include "masking.h"
 #include "ofxCv.h"
 #include "controlPanel.h"
+#include "threadedBoids.h"
 
 
 class InsideWorld  {
@@ -22,9 +23,10 @@ shared_ptr<ParametersGUI> parametersGui;
   
  private:
   
-  Flock2d flock;
+  //Flock2d flock;
+    threadedBoids   boids;
   ofImage img;
-
+    
   /* MASK */
   ofImage staticMask;
 

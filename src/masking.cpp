@@ -26,9 +26,8 @@ ofFbo Masking::applyMaskToFbo(const ofFbo& fboMasked,  const ofFbo& fboBackgroun
   fboMasked.draw(0, 0);
   mask.end();
   ofPopMatrix();
-  
   res.end();
-
+  
   return res;
 }
 

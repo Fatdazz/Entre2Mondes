@@ -13,11 +13,17 @@
 
 class threadedBoids: public ofThread{
 public:
+    Flock2d flock;
     
     threadedBoids();
-    ~threadedBoids();
+    //~threadedBoids();
+    void initBoids(int _width,int _height);
+    void drawBoids();
+    void drawLines();
+    vector<Boid2d *> getBoids();
     
 private:
     void threadedFunction();
+    int NumGroup;
     
 };

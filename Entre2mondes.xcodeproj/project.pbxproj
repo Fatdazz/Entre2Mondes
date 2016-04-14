@@ -1364,12 +1364,12 @@
 		BCEB40861CBF0CFA0082EDB5 /* Tr Signal */ = {
 			isa = PBXGroup;
 			children = (
+				BCEB40891CBF24790082EDB5 /* threadedCamera.cpp */,
+				BCEB408A1CBF24790082EDB5 /* threadedCamera.h */,
 				BCEB407F1CBF04690082EDB5 /* Camera.cpp */,
 				BCEB40801CBF04690082EDB5 /* Camera.h */,
 				BCEB40681CBF03AD0082EDB5 /* boxMaskGenerator.cpp */,
 				BCEB40691CBF03AD0082EDB5 /* boxMaskGenerator.h */,
-				BCEB40891CBF24790082EDB5 /* threadedCamera.cpp */,
-				BCEB408A1CBF24790082EDB5 /* threadedCamera.h */,
 				BC7F51B41CBF87E200898B9D /* cvEntre2mondes.cpp */,
 				BC7F51B51CBF87E200898B9D /* cvEntre2mondes.h */,
 			);
