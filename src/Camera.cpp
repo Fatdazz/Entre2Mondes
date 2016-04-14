@@ -73,11 +73,6 @@ ofPixels camera::cameraGetPixel(){
     }
 }
 
-
-
-
-
-
 int camera::cameraGetHeight(){
     return cameraHeight;
 }

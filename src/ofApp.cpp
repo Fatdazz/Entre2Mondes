@@ -47,8 +47,6 @@ void Entre2Mondes::update(){
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
     
     kinect->update();
-
-  
   
   if (kinect->isFrameNew()) {
 	  insideWorld.update(kinect->getPixels(), control);
@@ -92,65 +90,6 @@ void Entre2Mondes::draw(){
 //--------------------------------------------------------------
 void Entre2Mondes::keyPressed(int key){
 
-  //hit spacebar to toggle the blending strip
-  if (key == ' '){
-    //toggling this variable effects whether the blend strip is shown
-    projectorOutput.showBlend = !projectorOutput.showBlend;
-  } else if(key == 'g'){
-    projectorOutput.gamma[0]  -= .05;
-  } else if(key == 'G'){
-    projectorOutput.gamma[0]  += .05;
-  } else if(key == 'l'){
-    projectorOutput.luminance[0]  -= .05;
-  } else if(key == 'L'){
-    projectorOutput.luminance[0]  += .05;
-  } else if(key == 'p'){
-    projectorOutput.blendPower[0]  -= .05;
-  } else if(key == 'P'){
-    projectorOutput.blendPower[0] += .05;
-  } else if (key == 'r'){
-    projectorOutput.moveDisplayVertical(0, 1);
-  } else if (key == 'R'){
-    projectorOutput.moveDisplayVertical(0, -1);
-  } else if (key == 'A'){
-    overlaped++;
-    projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, overlaped);
-    cout<< "over:"<< overlaped <<endl;
-  } else if (key == 'a'){
-    overlaped--;
-    projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, overlaped);
-    cout<< "over:"<< overlaped <<endl;
-  } else if (key == 'Z'){
-    overlaped += 10;
-    projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, overlaped);
-    cout<< "over:"<< overlaped <<endl;
-  } else if (key == 'z'){
-    overlaped -= 10;
-    projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, overlaped);
-    cout<< "over:"<< overlaped <<endl;
-  }
-  
-
-  /*
-    switch (key){
-    case OF_KEY_UP:
-    if (projectorTwoOffset < 0){
-    projectorTwoOffset = 0;
-    }
-    projectorTwoOffset++;    
-    projectorOutput.moveDisplayVertical(1, projectorTwoOffset);
-    break;
-    case OF_KEY_DOWN:
-    if (projectorTwoOffset > 0){
-    projectorTwoOffset = 0;
-    }
-    projectorTwoOffset--;
-    projectorOutput.moveDisplayVertical(1, projectorTwoOffset);
-    break;
-    default:
-    break;
-    }
-  */
 }
 
 //--------------------------------------------------------------

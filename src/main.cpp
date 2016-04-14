@@ -47,7 +47,6 @@ int main( ){
 	entreDeuxMondesApp->control = controlPanelApp;
 
     ofRunApp(mainWindow, entreDeuxMondesApp);
-    sleep(10);
 	ofRunApp(controlPanel, controlPanelApp);
 	ofRunMainLoop();
     

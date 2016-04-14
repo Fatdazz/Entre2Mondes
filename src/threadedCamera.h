@@ -14,12 +14,11 @@
 
 class threadedCamera: public ofThread{
 public:
-    camera  cam = camera(1);
+    camera  cam = camera(2);
     threadedCamera();
     ~threadedCamera();
     ofImage maskInsideWorld,maskCamera;
     
 private:
     void threadedFunction();
-
 };

@@ -5,6 +5,7 @@
 //  Created by FatDazz_mac on 14/04/2016.
 //
 //
+#pragma once
 
 #include "threadedBoids.h"
 
