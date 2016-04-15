@@ -9,14 +9,19 @@
 
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
-    
+
+  /*
     ///// remplacé par camera
 	kinect = make_shared<ofxKinect>();
 	kinect->init();
 	kinect->open();
     /////////
     control->setKinect(kinect);
+  */  
 
+  //camera.setup(CameraType::KINECTV1);
+  camera->setup(CameraType::WEBCAM);
+    
   //need this for alpha to come through
   ofEnableAlphaBlending();
   
@@ -46,13 +51,13 @@ void Entre2Mondes::setup() {
 void Entre2Mondes::update(){
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
     
-    kinect->update();
+	camera->update();
   
-  if (kinect->isFrameNew()) {
-	  insideWorld.update(kinect->getPixels(), control);
-  } 
-
-  outsideWorld.update();
+	if (camera->isFrameNew()) {
+	  insideWorld.update(camera->getPixels(), control);
+	}
+	
+	outsideWorld.update();
 }
 
 //--------------------------------------------------------------

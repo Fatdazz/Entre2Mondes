@@ -10,6 +10,7 @@
 #include "ofxCv.h"
 #include "ofxKinect.h"
 #include "controlPanel.h"
+#include "camera.h"
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -50,7 +51,8 @@ class Entre2Mondes : public ofBaseApp{
 
   ofFbo insideWorldMask;
 
-  shared_ptr<ofxKinect> kinect;
+  //shared_ptr<ofxKinect> kinect;
+  shared_ptr<Camera> camera;
 
   shared_ptr<ControlPanel> control;
 };

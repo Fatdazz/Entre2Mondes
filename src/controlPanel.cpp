@@ -20,22 +20,22 @@ void ControlPanel::setup() {
   gui.add(s.set("Saturation value", 128, 0, 255));
   gui.add(b.set("Brightness value", 128, 0, 255));	
 
-  gui.add(ROIH.set("ROI H", 0, 0, kinect->getHeight()));
-  gui.add(ROIY.set("ROI Y", 0, 0, kinect->getHeight()));
+  gui.add(ROIH.set("ROI H", 0, 0, camera->getHeight()));
+  gui.add(ROIY.set("ROI Y", 0, 0, camera->getHeight()));
 }
 
 void ControlPanel::update() {
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
 
-	if (ROIH + ROIY > kinect->height) {
-		ROIH = kinect->height - ROIY;
+	if (ROIH + ROIY > camera->getHeight()) {
+	  ROIH = camera->getHeight() - ROIY;
 	}
 
   targetColor.setHsb(h, s, b);
 
-  if (kinect->isFrameNew()) {
+  if (camera->isFrameNew()) {
 
-    flipImage = kinect->getPixels();
+    flipImage = camera->getPixels();
     flipImage.mirror(true, true);
 
     if (trackH) {
@@ -72,7 +72,7 @@ void ControlPanel::draw() {
 
 	ofSetLineWidth(3);
 	ofNoFill();
-	ofDrawRectangle(0, ROIY, kinect->getWidth(), ROIH);
+	ofDrawRectangle(0, ROIY, camera->getWidth(), ROIH);
 
 	gui.draw();
 

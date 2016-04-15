@@ -2,7 +2,6 @@
 #include "ofApp.h"
 #include "controlPanel.h"
 #include "parametersGUI.h"
-#include "Camera.h"
 
 constexpr int NUM_GROUPS = 6;
 
@@ -46,11 +45,9 @@ int main( ){
 
 	entreDeuxMondesApp->control = controlPanelApp;
 
-    ofRunApp(mainWindow, entreDeuxMondesApp);
+	ofRunApp(mainWindow, entreDeuxMondesApp);
 	ofRunApp(controlPanel, controlPanelApp);
-	ofRunMainLoop();
-    
-    //camera  camera(1);
+	ofRunMainLoop();       
 
 }
 

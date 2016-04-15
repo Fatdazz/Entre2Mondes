@@ -6,6 +6,7 @@
 #include "ofxCv.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
+#include "camera.h"
 
 class ControlPanel : public ofBaseApp {
 public:
@@ -45,12 +46,12 @@ public:
 
     ofImage flipImage;
 
-	  void setKinect(shared_ptr<ofxKinect>& kinect) {
-		  this->kinect = kinect;
-	  }
 
-	 shared_ptr<ofxKinect> kinect;
+    void setCamera(shared_ptr<Camera>& cam){
+      camera = cam;
+    }
 
+    shared_ptr<Camera> camera;
 
 };
 
