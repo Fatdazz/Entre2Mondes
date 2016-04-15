@@ -1,4 +1,9 @@
-
+Makefile
+compile_commands.json
+*.qbs
+*.xcodeprog
+*.slm
+*.vcxproj*
 
 # Created by https://www.gitignore.io/api/linux,windows,osx,c++,c,xcode,visualstudio,visualstudiocode,vim,emacs,codeblocks,qt
 
