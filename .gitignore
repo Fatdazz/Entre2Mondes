@@ -1,4 +1,7 @@
-
+*.sln
+*.vcxproj*
+Makefile
+compile_commands.json
 
 # Created by https://www.gitignore.io/api/linux,windows,osx,c++,c,xcode,visualstudio,visualstudiocode,vim,emacs,codeblocks,qt
 
