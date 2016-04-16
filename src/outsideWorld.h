@@ -1,14 +1,25 @@
-//
-//  outsideWorld.hpp
-//  Entre2mondes
-//
-//  Created by FatDazz_mac on 12/03/2016.
-//
-//
+#pragma once
 
-#ifndef outsideWorld_hpp
-#define outsideWorld_hpp
+#include "ofMain.h"
 
-#include <stdio.h>
+#include "Camera.h"
 
-#endif /* outsideWorld_hpp */
+class OutsideWorld {
+ public:
+
+  
+
+  void setup(int width, int height);
+
+  void update();
+
+  void draw();
+  
+  ofFbo outsideWorld;
+  
+ private:
+
+  ofImage img;
+
+  Camera cam;
+};

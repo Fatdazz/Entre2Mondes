@@ -1,13 +1,8 @@
-ofxBoids_apoil
+ofxBoids
 ofxCv
-ofxDelaunay
 ofxGui
 ofxKinect
-ofxLibwebsockets
 ofxNetwork
 ofxOpenCv
-ofxPostGlitch
-ofxPostProcessing
 ofxProjectorBlend
-ofxTurboJpeg
 ofxXmlSettings
