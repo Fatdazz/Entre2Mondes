@@ -4,6 +4,7 @@
 Masking::Masking(){
   mask.load("shader/mask");
   img.load("vitres1.png");
+
   res.begin();
   ofClear(255, 255, 255, 0);
   res.end();

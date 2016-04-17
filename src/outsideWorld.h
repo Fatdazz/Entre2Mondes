@@ -22,4 +22,5 @@ class OutsideWorld {
   ofImage img;
 
   Camera cam;
+
 };

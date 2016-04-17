@@ -7,6 +7,7 @@
 
 constexpr int NUM_GROUPS = 6;
 
+
 //========================================================================
 int main( ){  
 
@@ -42,6 +43,7 @@ int main( ){
     ofRunApp(mainWindow, entreDeuxMondesApp);
 	ofRunApp(controlPanel, controlPanelApp);
 	ofRunMainLoop();
+
 
 }
 

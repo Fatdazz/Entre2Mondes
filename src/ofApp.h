@@ -9,8 +9,9 @@
 #include "ofxCv.h"
 #include "ofxKinect.h"
 #include "controlPanel.h"
-#include "Camera.h"
+#include "camera.h"
 #include "BoxContourDetector.h"
+
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -63,4 +64,5 @@ class Entre2Mondes : public ofBaseApp{
   BoxContourDetector boxContour;
 
   ofImage tmpBoxContour;
+
 };

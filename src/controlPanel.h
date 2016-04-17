@@ -8,6 +8,7 @@
 #include "ofxKinect.h"
 #include "BoxDetector.h"
 
+
 class ControlPanel : public ofBaseApp {
 public:
 

@@ -37,6 +37,7 @@ void ControlPanel::update() {
   //if (kinect->isFrameNew()) {
 
     //flipImage = kinect->getPixels();
+
     flipImage.mirror(true, true);
 
     if (trackH) {
@@ -54,6 +55,7 @@ void ControlPanel::update() {
 		
     contourFinder.setThreshold(threshold);
     contourFinder.findContours(flipImage.getPixels());
+
   //}
   */
 
@@ -61,6 +63,7 @@ void ControlPanel::update() {
 
 void ControlPanel::draw() {
 	/*
+
 	ofSetColor(255);
 	flipImage.draw(0,0);
 
@@ -76,7 +79,9 @@ void ControlPanel::draw() {
 
 	ofSetLineWidth(3);
 	ofNoFill();
+
 	//ofDrawRectangle(0, ROIY, kinect->getWidth(), ROIH);
+
 
 	gui.draw();
 
@@ -86,9 +91,9 @@ void ControlPanel::draw() {
 	ofDrawRectangle(-3, -3, 64 + 6, 64 + 6);
 	ofSetColor(targetColor);
 	ofDrawRectangle(0, 0, 64, 64);
+
 	*/
 
-	
 }
 
 void ControlPanel::mousePressed(int x, int y, int button) {

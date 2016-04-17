@@ -33,7 +33,7 @@ void threadedBoids::initBoids(int _width,int _height){
                                2);
         }
     }  
-	cout << "test" << endl;
+
     startThread();
 }
 

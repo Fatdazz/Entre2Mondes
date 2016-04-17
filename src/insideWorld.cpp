@@ -88,6 +88,7 @@ void InsideWorld::update(ofPixels stream, shared_ptr<ControlPanel>& control) {
   insideWorldMask.begin();
   ofClear(0, 0, 0, 0);
   staticMask.draw(0, 0);
+
   insideWorldMask.end(); 
 
   

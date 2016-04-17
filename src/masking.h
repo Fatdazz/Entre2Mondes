@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+
 #include "MaskGenerator.h"
+
 
 class Masking {
  public:  

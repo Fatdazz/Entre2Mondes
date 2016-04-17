@@ -9,6 +9,7 @@
 
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
+
 	camera = make_shared<Camera>();
 	camera->setup(CameraType::KINECTv1);
 
@@ -48,11 +49,13 @@ void Entre2Mondes::setup() {
 	  boxes.begin();
 	  ofClear(255, 255, 255, 0);
 	  boxes.end();
+
 }
 
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
+
 
 	camera->update();
 
@@ -127,14 +130,11 @@ void Entre2Mondes::update(){
 	
 
 	projectorOutput.end();
+
 }
 
 //--------------------------------------------------------------
 void Entre2Mondes::draw(){
-
-
-
-
 
   projectorOutput.draw();
 }
