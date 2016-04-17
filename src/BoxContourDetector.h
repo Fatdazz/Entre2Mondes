@@ -9,14 +9,14 @@ public:
 	~BoxContourDetector();
 
 	void threadedFunction() override;
-	
-	void imgToFind(ofImage image);
+
 	vector<ofPolyline> getContours();
 
 	ofThreadChannel<ofPixels> stream;
 	ofThreadChannel<ofPixels> toStream;
 
 	void analyze(ofPixels & pixels) {
+		contours.clear();
 		toStream.send(pixels);
 	}
 

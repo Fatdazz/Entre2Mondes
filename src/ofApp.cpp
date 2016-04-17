@@ -43,6 +43,11 @@ void Entre2Mondes::setup() {
 
 	  //tmpBoxContour.allocate(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight(), OF_IMAGE_GRAYSCALE);
 	  tmpBoxContour.setImageType(OF_IMAGE_GRAYSCALE);
+
+	  boxes.allocate(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
+	  boxes.begin();
+	  ofClear(255, 255, 255, 0);
+	  boxes.end();
 }
 
 
