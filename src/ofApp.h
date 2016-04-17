@@ -9,6 +9,8 @@
 #include "ofxCv.h"
 #include "ofxKinect.h"
 #include "controlPanel.h"
+#include "Camera.h"
+#include "BoxContourDetector.h"
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -45,9 +47,20 @@ class Entre2Mondes : public ofBaseApp{
   Masking mask;
   ofShader shader;
 
-  ofImage windowMask;
+  MaskGenerator maskGen;
 
   ofFbo insideWorldMask;
 
   shared_ptr<ControlPanel> control;
+
+  BoxDetector detector;
+
+  shared_ptr<Camera> camera;
+
+  ofFbo boxes;
+  ofImage windowMask;
+
+  BoxContourDetector boxContour;
+
+  ofImage tmpBoxContour;
 };

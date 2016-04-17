@@ -34,8 +34,6 @@ private:
 	shared_ptr<ofBaseVideo> camera;
     CameraType camType;
     int width , height;
-
-	ofImage img;
 };
 
 

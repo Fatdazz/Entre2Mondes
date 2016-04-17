@@ -16,9 +16,8 @@ void Camera::setup(CameraType ct, int camWidth, int camHeight){
             kinect_1 = make_shared<ofxKinect>();
             kinect_1->init();
             kinect_1->open();
-            width=kinect_1->width;
-            height=kinect_1->height;
-
+            width = kinect_1->width;
+            height = kinect_1->height;
 			camera = kinect_1;
             break;
 
@@ -27,7 +26,6 @@ void Camera::setup(CameraType ct, int camWidth, int camHeight){
             grabber->setup(camWidth, camHeight);
             width = grabber->getWidth();
             height = grabber->getHeight();
-
 			camera = grabber;
 			break;
     }
@@ -101,15 +99,11 @@ ofPixels& Camera::getPixels(){
 
 	switch (camType) {
 		case CameraType::KINECTv1:
-			img = kinect_1->getPixels();
-			img.mirror(true, true);
-			return img.getPixels();
+			return kinect_1->getPixels();
             break;
 
 		case CameraType::WEBCAM:
-			img.setFromPixels(grabber->getPixels());
-			img.mirror(true, true);
-			return img.getPixels();
+			return grabber->getPixels();
 			break;
     }
 }

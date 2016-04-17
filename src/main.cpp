@@ -10,17 +10,18 @@ constexpr int NUM_GROUPS = 6;
 //========================================================================
 int main( ){  
 
-  /*
-  ofGLFWWindowSettings settings;
-  settings.setGLVersion(3, 2); //we define the OpenGL version we want to use
-  settings.width = 1024;
-  settings.height = 768;
-  ofCreateWindow(settings);
-  */
-
-
-
 	ofGLFWWindowSettings windowSettings;
+
+	// Settings for main window
+	windowSettings.resizable = false;
+	//windowSettings.windowMode = OF_FULLSCREEN;
+	
+	windowSettings.setPosition(ofVec2f(0, 100));
+	windowSettings.width = 1980;
+	windowSettings.height = 1080;
+
+	shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(windowSettings);
+
 
 	// Settings for window with controls
 	
@@ -29,28 +30,14 @@ int main( ){
 	windowSettings.height = 800;
 	windowSettings.setPosition(ofVec2f(0, 100));
 	windowSettings.resizable = true;
+	//windowSettings.shareContextWith = mainWindow;
 
 	shared_ptr<ofAppBaseWindow> controlPanel = ofCreateWindow(windowSettings);
-
-	// Settings for main window
-	windowSettings.resizable = false;
-	//windowSettings.windowMode = OF_FULLSCREEN;
-	//windowSettings.shareContextWith = controlPanel;
-	windowSettings.setPosition(ofVec2f(0, 100));
-	windowSettings.width = 1980;
-	windowSettings.height = 1080;
-
-	shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(windowSettings);
 
 	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
 	shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
 
 	entreDeuxMondesApp->control = controlPanelApp;
-
-	shared_ptr<BoxDetector> detector = make_shared<BoxDetector>();
-	detector->setup(CameraType::KINECTv1);
-
-	controlPanelApp->boxDetector = detector;
 
     ofRunApp(mainWindow, entreDeuxMondesApp);
 	ofRunApp(controlPanel, controlPanelApp);

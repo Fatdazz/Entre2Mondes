@@ -88,9 +88,7 @@ void ControlPanel::draw() {
 	ofDrawRectangle(0, 0, 64, 64);
 	*/
 
-	ofImage img;
-	img.setFromPixels(boxDetector->camera.getPixels());
-	img.draw(0, 0);
+	
 }
 
 void ControlPanel::mousePressed(int x, int y, int button) {

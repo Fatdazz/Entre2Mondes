@@ -10,23 +10,19 @@ class BoxDetector : public ofThread {
 public:
 	~BoxDetector();
 
-	void setup(CameraType ct, int fboWidth = 0, int fboHeight = 0);
+	void setup(shared_ptr<Camera> cam, int fboWidth = 0, int fboHeight = 0);
 
-	ofFbo getFbo();
-
-	vector<ofPolyline> getContours();
-
-	ofFbo fbo;
-	Camera camera;
-	MaskGenerator generator;
-	Masking masking;
-	ofImage windowMask;
+	vector<ofPolyline>& getContours();
 
 	void threadedFunction() override;
 
 	ofxCv::ContourFinder finder;
 	vector<ofPolyline> contours;
 
-	ofImage tmp;
+	ofImage mirrored;
+
+	shared_ptr<Camera> camera;
+
+	
 };
 

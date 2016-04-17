@@ -5,62 +5,38 @@
 
 BoxDetector::~BoxDetector() {
 	stopThread();
+	waitForThread();
 }
 
-void BoxDetector::setup(CameraType ct, int fboWidth, int fboHeight) {
-
-	windowMask.load("vitres1.png");
-
-	camera.setup(ct);
-
-	generator.setup(camera.getWidth(), camera.getHeight());
+void BoxDetector::setup(shared_ptr<Camera> cam, int fboWidth, int fboHeight) {
 
 	finder.setThreshold(200);
 	finder.setMinAreaRadius(50);
 	finder.setMaxAreaRadius(500);
+	finder.setUseTargetColor(true);
+	finder.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_RGB);
 
-	tmp.allocate(windowMask.getWidth(), windowMask.getHeight(), OF_IMAGE_GRAYSCALE);
+	camera = cam;
 
-	fbo.allocate(windowMask.getWidth(), windowMask.getHeight());
-
-	fbo.begin();
-	ofClear(0, 0, 0, 0);
-	fbo.end();
+	mirrored.allocate(camera->getWidth(), camera->getHeight(), OF_IMAGE_COLOR);
+	mirrored.setUseTexture(false);
 
 	startThread();
 }
 
-ofFbo BoxDetector::getFbo() {
-	return fbo;
-}
-
 void BoxDetector::threadedFunction() {
-	while (true) {
-	camera.update();
+	while (isThreadRunning()) {
+	camera->update();
 
-	if (camera.isFrameNew()) {
+	if (camera->isFrameNew()) {
 
-		//cameraChannel.send(camera.getPixels());
-		// mask generator
-		/*
-		generator.resetMask();
-		generator.updateMask(camera.getPixels());
-		*/
+		///////// mask generator
+		
+		mirrored.setFromPixels(camera->getPixels());
+		//mirrored.mirror(true, true);
 
-		/*
-		// final fbo mask
-		fbo.begin();
-		ofClear(0, 0, 0, 0);
-		ofSetColor(ofColor::white);
-		windowMask.draw(0, 0);
-		generator.getFbo();
-		fbo.end();
-		*/
-
-		/*
-		//convert fbo to image to get proper mask contours
-		fbo.readToPixels(tmp);
-		cv::Mat mat = ofxCv::toCv(tmp);
+		
+		cv::Mat mat = ofxCv::toCv(mirrored);
 		finder.findContours(mat);
 		
 		contours.clear();
@@ -68,13 +44,14 @@ void BoxDetector::threadedFunction() {
 		for (int i = 0; i < finder.size(); i++) {
 			contours.push_back(ofxCv::toOf(finder.getContour(i)));
 		}
-		*/
+		
 	}
 
 	}
 }
 
 
-vector<ofPolyline> BoxDetector::getContours() {
+
+vector<ofPolyline>& BoxDetector::getContours() {
 	return contours;
 }
