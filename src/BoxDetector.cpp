@@ -26,7 +26,7 @@ void BoxDetector::setup(shared_ptr<Camera> cam, int fboWidth, int fboHeight) {
 
 void BoxDetector::threadedFunction() {
 	while (isThreadRunning()) {
-	camera->update();
+	//camera->update();
 
 	if (camera->isFrameNew()) {
 
