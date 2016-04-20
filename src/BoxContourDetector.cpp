@@ -37,3 +37,18 @@ vector<ofPolyline> BoxContourDetector::getContours() {
 	//stopThread();
 	return contours;
 }
+
+void BoxContourDetector::analyze(ofPixels & pixels) {
+	contours.clear();
+	toStream.send(pixels);
+}
+
+void BoxContourDetector::update() {
+	newFrame = false;
+	while (stream.tryReceive(pixels)) {
+		newFrame = true;
+	}
+	if (newFrame) {
+		finder.findContours(pixels);
+	}
+}

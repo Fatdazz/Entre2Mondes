@@ -11,6 +11,7 @@ public:
 	~BoxDetector();
 
 	void setup(shared_ptr<Camera> cam, int fboWidth = 0, int fboHeight = 0);
+	void draw();
 
 	vector<ofPolyline>& getContours();
 

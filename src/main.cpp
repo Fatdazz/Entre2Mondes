@@ -8,6 +8,7 @@
 constexpr int NUM_GROUPS = 6;
 
 
+
 //========================================================================
 int main( ){  
 
@@ -18,8 +19,8 @@ int main( ){
 	//windowSettings.windowMode = OF_FULLSCREEN;
 	
 	windowSettings.setPosition(ofVec2f(0, 100));
-	windowSettings.width = 1980;
-	windowSettings.height = 1080;
+	windowSettings.width = PROJECTOR_WIDTH * 2;
+	windowSettings.height = PROJECTOR_HEIGHT;
 
 	shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(windowSettings);
 

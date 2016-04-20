@@ -15,7 +15,7 @@ ofFbo& MaskGenerator::getFbo() {
 }
 
 void MaskGenerator::addObject(ofPolyline contour) {
-	if (contour.getArea() > 0) {
+	if (contour.getArea() != 0) {
 		// tesselate the polyline to make it more usable with opengl
 		tess.tessellateToMesh(contour, OF_POLY_WINDING_ODD, mesh, true);
 		boxes.push_back(mesh);

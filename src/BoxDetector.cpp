@@ -50,6 +50,11 @@ void BoxDetector::threadedFunction() {
 	}
 }
 
+void BoxDetector::draw() {
+	for (int i = 0; i < contours.size(); i++) {
+		contours[i].draw();
+	}
+}
 
 
 vector<ofPolyline>& BoxDetector::getContours() {

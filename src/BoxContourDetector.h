@@ -15,25 +15,9 @@ public:
 	ofThreadChannel<ofPixels> stream;
 	ofThreadChannel<ofPixels> toStream;
 
-	void analyze(ofPixels & pixels) {
-		contours.clear();
-		toStream.send(pixels);
-	}
+	void update();
+	void analyze(ofPixels & pixels);
 
-	void update() {
-		newFrame = false;
-		while (stream.tryReceive(pixels)) {
-			newFrame = true;
-		}
-		if (newFrame) {
-			if (!texture.isAllocated()) {
-				texture.allocate(pixels);
-			}
-			texture.loadData(pixels);
-		}
-	}
-
-	ofTexture texture;
 	ofPixels pixels;
 
 	bool newFrame;

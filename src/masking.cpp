@@ -3,7 +3,7 @@
 
 Masking::Masking(){
   mask.load("shader/mask");
-  img.load("vitres1.png");
+  //img.load("vitres1.png");
 
   res.begin();
   ofClear(255, 255, 255, 0);
@@ -40,7 +40,7 @@ ofFbo Masking::applyMaskToFbo(ofFbo& fboMasked, ofFbo& fboBackground, ofFbo& fbo
 	ofClear(255, 255, 255, 0);
 
 	fboBackground.draw(0, 0);
-
+	
 	ofPushMatrix();
 	mask.begin();
 	mask.setUniformTexture("mask", fboMask.getTexture(), 1);
@@ -49,7 +49,7 @@ ofFbo Masking::applyMaskToFbo(ofFbo& fboMasked, ofFbo& fboBackground, ofFbo& fbo
 	fboMasked.draw(0, 0);
 	mask.end();
 	ofPopMatrix();
-
+	
 	res.end();
 
 	return res;

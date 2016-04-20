@@ -13,7 +13,7 @@ class InsideWorld  {
  public:  
   
   void setup(int width, int height);
-  void update(ofPixels stream, shared_ptr<ControlPanel>& control);
+  void update();
   void draw();
   
   ofFbo insideWorld;

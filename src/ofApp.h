@@ -10,8 +10,15 @@
 #include "ofxKinect.h"
 #include "controlPanel.h"
 #include "Camera.h"
-#include "BoxContourDetector.h"
+#include "ContourDetectorThread.h"
 
+
+#define PROJECTOR_COUNT 2
+//#define PROJECTOR_WIDTH 1920
+//#define PROJECTOR_HEIGHT 1080
+#define PROJECTOR_WIDTH 960
+#define PROJECTOR_HEIGHT 540
+#define PIXEL_OVERLAP 545
 
 class Entre2Mondes : public ofBaseApp{
 
@@ -61,8 +68,10 @@ class Entre2Mondes : public ofBaseApp{
   ofFbo boxes;
   ofImage windowMask;
 
-  BoxContourDetector boxContour;
+  ContourDetectorThread boxContour;
 
   ofImage tmpBoxContour;
+
+  vector<ofPolyline> poly;
 
 };

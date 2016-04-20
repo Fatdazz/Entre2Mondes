@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 
-#include "MaskGenerator.h"
 
 
 class Masking {
