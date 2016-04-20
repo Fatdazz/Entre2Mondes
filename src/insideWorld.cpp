@@ -12,7 +12,7 @@ void InsideWorld::setup(int width, int height) {
 
 }
 
-void InsideWorld::update(vector<ofPolyline> contours) {
+void InsideWorld::update() {
 
   // TODO: rellocate and use after camera update to optimize computer vision
   //cv::Rect roi(0, control->ROIY, stream.getWidth(), control->ROIH);

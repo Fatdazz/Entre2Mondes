@@ -17,7 +17,7 @@ class InsideWorld  {
  public:  
   
   void setup(int width, int height);
-  void update(vector<ofPolyline> contours);
+  void update();
   void draw();
   
   ofFbo insideWorld;  

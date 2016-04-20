@@ -15,8 +15,13 @@ void Entre2Mondes::setup() {
   projectorOutput.setup(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, PROJECTOR_COUNT, PIXEL_OVERLAP);
   projectorOutput.gamma[0] = .5;
   projectorOutput.blendPower[0] = 1;
+
   projectorTwoOffset = 0;
+
   projectorOutput.luminance[0] = 0;
+
+  //ofSetWindowShape(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
+
   overlaped = PIXEL_OVERLAP;
 
   cout << "canvas size: " << projectorOutput.getCanvasWidth() << " x " << projectorOutput.getCanvasHeight() << endl;
@@ -55,6 +60,7 @@ void Entre2Mondes::setup() {
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
+
 
   // Show FPS in window title
   ofSetWindowTitle(to_string(ofGetFrameRate()));
