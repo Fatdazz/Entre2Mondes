@@ -123,11 +123,10 @@ void Entre2Mondes::update(){
 	boxContour.update();
 
 	vector<ofPolyline> poly = boxContour.getContours();
-	cout << poly.size() << endl;
+	//cout << poly.size() << endl;
 	for (int i = 0; i < poly.size(); i++) {
 		poly[i].draw();
 	}
-	
 
 	projectorOutput.end();
 

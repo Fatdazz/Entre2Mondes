@@ -9,7 +9,7 @@
 #include "ofxCv.h"
 #include "ofxKinect.h"
 #include "controlPanel.h"
-#include "camera.h"
+#include "Camera.h"
 #include "BoxContourDetector.h"
 
 
