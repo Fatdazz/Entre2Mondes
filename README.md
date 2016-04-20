@@ -16,7 +16,7 @@ This was tested against openframworks 0.9.3.
 
 Download or clone this repository in OPENFRAMEWORKS_ROOT/apps/myApps/
 
-then use
+Run the projector generator then use
 
 `make`
 `make run`
