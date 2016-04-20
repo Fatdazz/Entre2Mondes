@@ -6,7 +6,7 @@
 #include "masking.h"
 #include "ofxCv.h"
 #include "controlPanel.h"
-#include "threadedBoids.h"
+#include "BoidsThread.h"
 
 /*
  * This class is the entry point for all the things that appear on the boxes

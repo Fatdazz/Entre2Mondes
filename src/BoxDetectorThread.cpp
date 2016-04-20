@@ -1,4 +1,4 @@
-#include "BoxDetector.h"
+#include "BoxDetectorThead.h"
 
 
 
@@ -37,6 +37,7 @@ void BoxDetector::threadedFunction() {
 
 		
 		cv::Mat mat = ofxCv::toCv(mirrored);
+        
 		finder.findContours(mat);
 		
 		contours.clear();
@@ -45,7 +46,7 @@ void BoxDetector::threadedFunction() {
 			contours.push_back(ofxCv::toOf(finder.getContour(i)));
 		}
 		
-	}
+        }
 
 	}
 }

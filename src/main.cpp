@@ -3,7 +3,7 @@
 #include "controlPanel.h"
 #include "parametersGUI.h"
 #include "Camera.h"
-#include "BoxDetector.h"
+
 
 constexpr int NUM_GROUPS = 6;
 

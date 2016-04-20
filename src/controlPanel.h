@@ -6,7 +6,7 @@
 #include "ofxCv.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
-#include "BoxDetector.h"
+#include "BoxDetectorThead.h"
 
 
 class ControlPanel : public ofBaseApp {
