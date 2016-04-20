@@ -3,6 +3,12 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 
+/*
+ * This class creates of list of objets from points
+ * and generates an fbo mask from all the objects
+ * which works with opengl
+ */
+
 class MaskGenerator {
 public:
 	

@@ -1,28 +1,29 @@
 #include "insideWorld.h"
 
 void InsideWorld::setup(int width, int height) {
-  // INIT FBO  
-  insideWorld.allocate(width, height); // TAILLE FENETRE DE JEU
+  // init fbo
+  insideWorld.allocate(width, height); 
   insideWorld.begin();
   ofClear(255, 255, 255, 0);
   insideWorld.end();
 
     
-    //boids.initBoids(width, height);
+    boids.initBoids(width, height);
 
 }
 
-void InsideWorld::update() {
+void InsideWorld::update(vector<ofPolyline> contours) {
 
+  // TODO: rellocate and use after camera update to optimize computer vision
   //cv::Rect roi(0, control->ROIY, stream.getWidth(), control->ROIH);
-
- // resizedStream = ofxCv::toCv(streamImage);
-  //resizedStream = resizedStream(roi);
-  //cv::blur(resizedStream, resizedStream, cv::Size(50, 50));
+  // resizedStream = ofxCv::toCv(streamImage);
+  //resizedStream = resizedStream(roi);  
   //streamImage.update();
 
  
-/*                  //////// Notion  de lines à trasféré
+  // TODO: fix attractionlines expanding over their assigned segment  
+  // TODO: add to threaded boids
+  /*
   flock.attractionLines.clear();
   auto& attrPoints = insideWorldMaskContours.getContours();
   for (int i = 0; i < attrPoints.size(); i++){
@@ -37,16 +38,15 @@ void InsideWorld::update() {
 		  flock.addAttrationLine(ofPoint(attrPointsStatic[i][j].x, attrPointsStatic[i][j].y), ofPoint(attrPointsStatic[i][j + 1].x, attrPointsStatic[i][j + 1].y), -200, 10, 10, 0);
 	  }
   }
-*/
+  */
     
   
   insideWorld.begin(); // FBO
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
-  ofSetColor(ofColor::blue);
-  ofDrawCircle(50, 50, 300);
+  ofSetColor(ofColor::blue);  
+  boids.drawBoids();
   insideWorld.end();
-
 }
 
 void InsideWorld::draw(){

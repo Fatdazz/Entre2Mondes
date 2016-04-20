@@ -5,7 +5,6 @@
 Camera::Camera() {
 	width = 0;
 	height = 0;
-
 	camera = nullptr;
 }
 

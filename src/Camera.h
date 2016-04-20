@@ -5,6 +5,13 @@
 
 enum class CameraType {WEBCAM, KINECTv1, KINECTv2};
 
+/*
+ * Class wrapper over ofxKinect and ofVideoGrabber (more to come)
+ * This makes it easy to switch from one camera to another
+ * TODO: Kinect V2 support
+ */
+
+
 class Camera
 {
 public:
@@ -18,13 +25,18 @@ public:
 	bool isFrameNew();
 
 	ofPixels& getPixels();
+	
+	int getWidth();
+	int getHeight();
 
+	CameraType getType();
+
+	shared_ptr<ofBaseVideo>& getCamera();
+
+ private:
 	shared_ptr<ofBaseVideo> camera;
 	int width;
 	int height;
-
-	int getWidth();
-	int getHeight();
 
 	CameraType camType;
 

@@ -16,7 +16,7 @@ ofFbo& MaskGenerator::getFbo() {
 
 void MaskGenerator::addObject(ofPolyline contour) {
 	if (contour.getArea() != 0) {
-		// tesselate the polyline to make it more usable with opengl
+		// tesselate the polyline to make it the object work better with opengl
 		tess.tessellateToMesh(contour, OF_POLY_WINDING_ODD, mesh, true);
 		boxes.push_back(mesh);
 	}
@@ -26,13 +26,12 @@ void MaskGenerator::generateMask() {
   mask.begin();
   ofClear(0, 0, 0, 0); // Clear the FBO
   ofSetColor(ofColor::white); // Set the color to white to draw the meshes
-  //ofScale(contourToMaskRatio); // aggrandissement mesh boites.
-  //ofTranslate pour compenser scale
-  //ofFill();
-  for (ofMesh& box : boxes) { // Draw every box group
+  // TODO: Scale the objects from camera space to opengl space
+  //ofScale(contourToMaskRatio);
+  //ofTranslate pour compenser scale  
+  for (ofMesh& box : boxes) { // Draw every object from the group
     box.draw();
-  }
-  //ofNoFill();
+  }  
   mask.end();
 }
 
@@ -41,7 +40,6 @@ void MaskGenerator::resetMask() {
 }
 
 void MaskGenerator::updateMask(vector<ofPolyline> poly) {
-
 	// Each groups contour is added to the list
 	for (int i = 0; i < poly.size(); i++) {
 		addObject(poly[i]);

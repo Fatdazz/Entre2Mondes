@@ -39,39 +39,37 @@ class Entre2Mondes : public ofBaseApp{
   void dragEvent(ofDragInfo dragInfo);
   void gotMessage(ofMessage msg);
 
-  // PROJECTOR OUTPUT
+  // Projector overlaping
   ofxProjectorBlend projectorOutput;
   int projectorTwoOffset;
   int overlaped;
-  // END PROJECTOR OUTPUT
 
-  // XML SETTINGS
-  ofxXmlSettings xml;
-  // END XML SETTINGS
-  
+  // XML settings
+  ofxXmlSettings xml;  
+
+  // Inside world
   InsideWorld insideWorld;
+
+  // Outside world
   OutsideWorld outsideWorld;
 
+  // Mask class to add FBOs together
   Masking mask;
-  ofShader shader;
 
+  // Static and dynamic mask generation
   MaskGenerator maskGen;
-
-  ofFbo insideWorldMask;
-
-  shared_ptr<ControlPanel> control;
-
-  BoxDetector detector;
-
-  shared_ptr<Camera> camera;
-
+  vector<ofPolyline> poly;
   ofFbo boxes;
   ofImage windowMask;
-
+  BoxDetector detector;
   ContourDetectorThread boxContour;
 
-  ofImage tmpBoxContour;
+  // Pointer to the control panel window
+  shared_ptr<ControlPanel> control;  
 
-  vector<ofPolyline> poly;
+  // Camera
+  shared_ptr<Camera> camera;  
+
+  
 
 };

@@ -2,7 +2,9 @@
 
 #include "ofMain.h"
 
-
+/*
+ * This allows to add FBOs and images with a mask, computed with using a shader
+ */
 
 class Masking {
  public:  

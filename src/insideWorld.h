@@ -8,38 +8,27 @@
 #include "controlPanel.h"
 #include "threadedBoids.h"
 
+/*
+ * This class is the entry point for all the things that appear on the boxes
+ * and on the edges of the windows and other objects.
+ */
 
 class InsideWorld  {
  public:  
   
   void setup(int width, int height);
-  void update();
+  void update(vector<ofPolyline> contours);
   void draw();
   
-  ofFbo insideWorld;
-  ofFbo insideWorldMask;
+  ofFbo insideWorld;  
   
-shared_ptr<ParametersGUI> parametersGui;
+  //shared_ptr<ParametersGUI> parametersGui;
   
  private:
   
   //Flock2d flock;
-    threadedBoids   boids;
-  ofImage img;
-    
-  /* MASK */
-  ofImage staticMask;
-
-  ofImage dynamicMask;    
+  threadedBoids   boids;
   
-  ofxCv::ContourFinder insideWorldMaskContours;
-  ofxCv::ContourFinder insideWorldMaskContoursStatic;
-  
-  cv::Mat resizedStream;
-
-  ofImage streamImage;
-
-  /* END MASK */
   
   int NumGroup = 3;
   
