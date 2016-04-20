@@ -11,7 +11,7 @@ class Masking {
   
   ofFbo applyMaskToFbo(const ofFbo& fboMasked,const ofFbo& fboBackground);
   ofFbo applyMaskToFbo(const ofImage& imageMasked, const ofImage& imageBackground);
-  ofFbo applyMaskToFbo(ofFbo& fboMasked, ofFbo& fboBackground, ofFbo& mask);
+  ofFbo applyMaskToFbo(const ofFbo& fboMasked, const ofFbo& fboBackground, const ofFbo& mask);
 
  private:
 	ofFbo res;

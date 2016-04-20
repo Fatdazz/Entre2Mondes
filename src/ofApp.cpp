@@ -4,7 +4,7 @@
 
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
-	/*
+	
 	camera = make_shared<Camera>();
 	camera->setup(CameraType::KINECTv1);
   
@@ -41,7 +41,7 @@ void Entre2Mondes::setup() {
 	  boxes.begin();
 	  ofClear(255, 255, 255, 0);
 	  boxes.end();
-	  */
+	  
 }
 
 
@@ -49,7 +49,7 @@ void Entre2Mondes::setup() {
 void Entre2Mondes::update(){
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
 
-   /*
+   
 	maskGen.resetMask();
 	maskGen.updateMask(detector.contours);
 	maskGen.generateMask();
@@ -68,16 +68,17 @@ void Entre2Mondes::update(){
 	
 	insideWorld.update();
 	outsideWorld.update();
-	*/
+	
 
 }
 
 //--------------------------------------------------------------
 void Entre2Mondes::draw() {
 
-	//projectorOutput.begin();
+	projectorOutput.begin();
 	ofClear(0, 0);
 
+	/*
 	ofFbo masked;
 	masked.allocate(500, 500);
 	masked.begin();
@@ -115,15 +116,13 @@ void Entre2Mondes::draw() {
 	ofDrawRectangle(0, 0, 300, 300);
 	m.end();
 
-	//mask.applyMaskToFbo(masked, background, m).draw(0, 0);
-	//masked.draw(0, 0);
-	//background.draw(0, 0);
-	//m.draw(0, 0);
+	*/
 
+	mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
 
-	//projectorOutput.end();
+	projectorOutput.end();
 
-	//projectorOutput.draw();
+	projectorOutput.draw();
 }
 
 //--------------------------------------------------------------

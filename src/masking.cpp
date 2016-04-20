@@ -1,10 +1,10 @@
 #include "masking.h"
 
 
-Masking::Masking(){
+Masking::Masking() {
   mask.load("shader/mask");
-  //img.load("vitres1.png");
-
+  img.load("vitres1.png");
+  cout << "test" << endl;
   res.begin();
   ofClear(255, 255, 255, 0);
   res.end();
@@ -32,26 +32,21 @@ ofFbo Masking::applyMaskToFbo(const ofFbo& fboMasked,  const ofFbo& fboBackgroun
   return res;
 }
 
-ofFbo Masking::applyMaskToFbo(ofFbo& fboMasked, ofFbo& fboBackground, ofFbo& fboMask) {
+ofFbo Masking::applyMaskToFbo(const ofFbo& fboMasked, const ofFbo& fboBackground, const ofFbo& fboMask) {
+	mask.load("shader/mask");
 
 	res.allocate(fboMasked.getWidth(), fboMasked.getHeight());
 
 	res.begin();
-	ofClear(255, 255, 255, 0);
 
+	ofClear(255, 255, 255, 0);
 	fboBackground.draw(0, 0);
-	
-	ofPushMatrix();
 	mask.begin();
 	mask.setUniformTexture("mask", fboMask.getTexture(), 1);
 	mask.setUniformTexture("tex", fboMasked.getTexture(), 2);
-
 	fboMasked.draw(0, 0);
 	mask.end();
-	ofPopMatrix();
-	
 	res.end();
-
 	return res;
 }
 
