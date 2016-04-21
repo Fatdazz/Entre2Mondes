@@ -34,8 +34,6 @@ void Entre2Mondes::setup() {
   
 	  maskGen.setup(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
 
-	  //tmpBoxContour.allocate(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight(), OF_IMAGE_GRAYSCALE);
-	  tmpBoxContour.setImageType(OF_IMAGE_GRAYSCALE);
 
 	  boxes.allocate(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
 	  boxes.begin();
@@ -49,7 +47,8 @@ void Entre2Mondes::setup() {
 void Entre2Mondes::update(){
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
 
-   
+	camera->update();
+
 	maskGen.resetMask();
 	maskGen.updateMask(detector.contours);
 	maskGen.generateMask();
@@ -61,7 +60,7 @@ void Entre2Mondes::update(){
 	windowMask.draw(0, 0);
 	maskGen.getFbo().draw(0,0);
 	boxes.end();
-
+	
 	ofPixels pix;
 	boxes.readToPixels(pix);
 	boxContour.setup(pix);
@@ -78,47 +77,7 @@ void Entre2Mondes::draw() {
 	projectorOutput.begin();
 	ofClear(0, 0);
 
-	/*
-	ofFbo masked;
-	masked.allocate(500, 500);
-	masked.begin();
-	ofClear(0);
-	masked.end();
-
-	ofFbo background;
-	background.allocate(500, 500);
-	background.begin();
-	ofClear(0);
-	background.end();
-
-	ofFbo m;
-	m.allocate(500, 500);
-	m.begin();
-	ofClear(0);
-	m.end();
-
-	background.begin();
-	ofClear(0);
-	ofBackground(255, 0, 0);
-	background.end();
-
-	masked.begin();
-	ofClear(0);
-	ofBackground(0, 255, 0);
-	ofSetColor(ofColor::purple);
-	ofDrawRectangle(0, 0, 200, 200);
-	masked.end();
-
-	m.begin();
-	ofClear(0);
-	ofBackground(0);
-	ofSetColor(ofColor::white);
-	ofDrawRectangle(0, 0, 300, 300);
-	m.end();
-
-	*/
-
-	mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
+	mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0,0);
 
 	projectorOutput.end();
 

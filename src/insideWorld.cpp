@@ -43,8 +43,7 @@ void InsideWorld::update() {
   insideWorld.begin(); // FBO
   ofClear(255, 255, 255, 0);
   ofBackground(0, 0, 0);
-  ofSetColor(ofColor::blue);
-  ofDrawCircle(50, 50, 300);
+
   insideWorld.end();
 
 }
