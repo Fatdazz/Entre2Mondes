@@ -46,8 +46,7 @@ void Entre2Mondes::setup() {
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
-
-	camera->update();
+    camera->update();
 
 	maskGen.resetMask();
 	maskGen.updateMask(detector.contours);
@@ -63,7 +62,11 @@ void Entre2Mondes::update(){
 	
 	ofPixels pix;
 	boxes.readToPixels(pix);
-	boxContour.setup(pix);
+	if (boxContour.isThreadRunning())
+	{
+		boxContour.setup(pix);
+	}
+	
 	
 	insideWorld.update();
 	outsideWorld.update();
@@ -77,7 +80,7 @@ void Entre2Mondes::draw() {
 	projectorOutput.begin();
 	ofClear(0, 0);
 
-	mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0,0);
+	mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
 
 	projectorOutput.end();
 
