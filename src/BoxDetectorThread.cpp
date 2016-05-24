@@ -44,9 +44,8 @@ void BoxDetector::threadedFunction() {
 
 		for (int i = 0; i < finder.size(); i++) {
 			contours.push_back(ofxCv::toOf(finder.getContour(i)));
+            }
 		}
-		
-        }
 
 	}
 }
@@ -54,6 +53,7 @@ void BoxDetector::threadedFunction() {
 void BoxDetector::draw() {
 	for (int i = 0; i < contours.size(); i++) {
 		contours[i].draw();
+        
 	}
 }
 
