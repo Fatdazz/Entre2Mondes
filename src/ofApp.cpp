@@ -5,10 +5,6 @@
 //--------------------------------------------------------------
 void Entre2Mondes::setup() {
 
-  // Initialize the camera
-  camera = make_shared<Camera>();
-  camera->setup(CameraType::WEBCAM);
-
   // Initialize projectoroutput
   // This class allows to align several projector outputs
   // As well as their overlaping to create one continuous screen
@@ -36,24 +32,10 @@ void Entre2Mondes::setup() {
   // Initialize the outside world
   // This stores everything that will be projected on the windows
   outsideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight());
+    
+    opencv.allocate(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, OF_IMAGE_COLOR);
 
-  // Initialize the detector and runs it in another thread
-  detector.setup(camera);
-
-  // This loads the contours the mask for the window contours and
-  // all static elements
-  windowMask.load("vitres1.png");
-  // We make sure it's at the right size for the window
-  windowMask.resize(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
-
-  // Initialize
-  maskGen.setup(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
-
-  // Initialize boxes FBO, this will store the final mask of all static and dynamic objects
-  boxes.allocate(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
-  boxes.begin();
-  ofClear(255, 255, 255, 0);
-  boxes.end();
+    ///////////////////////////////////// fichier vitre windowMask.load("vitres1.png");
 	  
 }
 
@@ -61,37 +43,6 @@ void Entre2Mondes::setup() {
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
 
-
-  // Show FPS in window title
-  ofSetWindowTitle(to_string(ofGetFrameRate()));
-
-  // Update the camera stream with the new image
-  camera->update();
-
-  // Mask generation of the detected objects from the camera
-
-  // Delete previous contours
-  maskGen.resetMask();
-  // Find the new contours in the detector (runs in another thread)
-  maskGen.updateMask(detector.contours);
-  // Finally create the FBO with the current mask of the contours
-  maskGen.generateMask();
-
-  // Create the final mask
-  boxes.begin();
-  // Reset
-  ofClear(0, 0);
-  // Black background
-  ofBackground(0);
-  ofSetColor(255);
-  windowMask.draw(0, 0); // Draw static mask
-  maskGen.getFbo().draw(0,0); // Draw detected objects mask
-  boxes.end();
-
-  // Convert FBO to pixels
-  ofPixels pix;
-  boxes.readToPixels(pix);
-  boxContour.setup(pix);
 
   // Update inside world
   insideWorld.update();
@@ -108,11 +59,15 @@ void Entre2Mondes::draw() {
   projectorOutput.begin();
   // reset
   ofClear(0, 0);
-
+    
+    //ofxCv::toOf(detector->imageContour, opencv);
+    //opencv.update();
+    //opencv.draw(0, 0);
+    
   // Draws inside world and outside world in the projector output
   // The mask is used here  to draw the inside world correctly
   // Draws inside world over outside world as well
-  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
+  //mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
   
   projectorOutput.end();
 

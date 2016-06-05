@@ -6,7 +6,8 @@
 #include "ofxCv.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
-#include "BoxDetectorThead.h"
+#include "DetectorBoxAndContour.h"
+
 
 
 class ControlPanel : public ofBaseApp {
@@ -47,8 +48,10 @@ public:
 
     ofImage flipImage;
 
+    BoxDetector  *detector;
+    ofVideoGrabber *cam;
 
-	shared_ptr<BoxDetector> boxDetector;
+
 
 };
 

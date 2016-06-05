@@ -10,14 +10,13 @@ enum class CameraType {WEBCAM, KINECTv1, KINECTv2};
  * This makes it easy to switch from one camera to another
  * TODO: Kinect V2 support
  */
-
-
 class Camera
 {
 public:
 	Camera();
 	~Camera();
-
+    
+    
 	void setup(CameraType type, int width = 640, int height = 480);
 	void draw(int x, int y);
 	void draw(int x, int y, int w, int h);
@@ -37,8 +36,6 @@ public:
 	shared_ptr<ofBaseVideo> camera;
 	int width;
 	int height;
-
 	CameraType camType;
-
 };
 

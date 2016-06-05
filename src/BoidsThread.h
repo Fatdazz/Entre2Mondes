@@ -16,7 +16,10 @@ public:
     Flock2d flock;
     
     threadedBoids();
-    //~threadedBoids();
+    ~threadedBoids(){
+        waitForThread();
+        stopThread();
+    };
     void initBoids(int _width,int _height);
     void drawBoids();
     void drawLines();

@@ -1,0 +1,111 @@
+#include "DetectorBoxAndContour.h"
+
+
+BoxDetector::~BoxDetector() {
+    stopThread();
+    waitForThread();
+}
+void BoxDetector::setup(ofVideoGrabber *cam) {
+    finder_1.setThreshold(200);
+    finder_1.setMinAreaRadius(50);
+    finder_1.setMaxAreaRadius(500);
+    finder_1.setUseTargetColor(true);
+    finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_RGB);
+    camera=cam;
+    mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
+    mirrored.setUseTexture(false);
+    imageFond = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1);
+    int w=40;
+    // Draw a circle
+    /** Create some points */
+    cv::Point rook_points[1][20];
+    rook_points[0][0] = cv::Point( w/4.0, 7*w/8.0 );
+    rook_points[0][1] = cv::Point( 3*w/4.0, 7*w/8.0 );
+    rook_points[0][2] = cv::Point( 3*w/4.0, 13*w/16.0 );
+    rook_points[0][3] = cv::Point( 11*w/16.0, 13*w/16.0 );
+    rook_points[0][4] = cv::Point( 19*w/32.0, 3*w/8.0 );
+    rook_points[0][5] = cv::Point( 3*w/4.0, 3*w/8.0 );
+    rook_points[0][6] = cv::Point( 3*w/4.0, w/8.0 );
+    rook_points[0][7] = cv::Point( 26*w/40.0, w/8.0 );
+    rook_points[0][8] = cv::Point( 26*w/40.0, w/4.0 );
+    rook_points[0][9] = cv::Point( 22*w/40.0, w/4.0 );
+    rook_points[0][10] = cv::Point( 22*w/40.0, w/8.0 );
+    rook_points[0][11] = cv::Point( 18*w/40.0, w/8.0 );
+    rook_points[0][12] = cv::Point( 18*w/40.0, w/4.0 );
+    rook_points[0][13] = cv::Point( 14*w/40.0, w/4.0 );
+    rook_points[0][14] = cv::Point( 14*w/40.0, w/8.0 );
+    rook_points[0][15] = cv::Point( w/4.0, w/8.0 );
+    rook_points[0][16] = cv::Point( w/4.0, 3*w/8.0 );
+    rook_points[0][17] = cv::Point( 13*w/32.0, 3*w/8.0 );
+    rook_points[0][18] = cv::Point( 5*w/16.0, 13*w/16.0 );
+    rook_points[0][19] = cv::Point( w/4.0, 13*w/16.0) ;
+    
+    const cv::Point* ppt[1] = { rook_points[0] };
+    int npt[] = { 20 };
+    
+    fillPoly( imageFond, ppt, npt, 1, cv::Scalar( 255, 255, 255 ), 8 );
+    
+    startThread();
+}
+void BoxDetector::threadedFunction() {
+    while (isThreadRunning()) {
+        
+        if (camera->isFrameNew()) {
+            
+            /// mask generator ///
+            
+            mirroredImage();
+            
+            cv::Mat mat = ofxCv::toCv(mirrored);
+            
+            finder_1.findContours(mat); // detection cam
+            
+            {
+                imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
+                
+                cv::Point** temp;                                   // code pour passe une vector en tableau
+                int variable = finder_1.getContours().size();         // je crois qu'il y aun fuite
+                const cv::Point* ppt[variable];
+                temp = new cv::Point* [variable];
+                int npt[variable];
+                
+                for (int i=0; i<variable; i++) {
+                    npt[i]=finder_1.getContours()[i].size();
+                    temp[i]= new cv::Point[npt[i]];
+                    for (int j=0; j<npt[i]; j++) {
+                        temp[i][j] = finder_1.getContours()[i][j];
+                    }
+                    ppt[i]=temp[i];
+                }
+                
+                cv::fillPoly( imageContour, ppt, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+                
+            } /// il y a des modif a faire ici
+            
+            imageContour=imageContour+imageFond; // somme le fond et le poly
+            imageDouble = cv::Mat::zeros(2*camera->getHeight(), 2*camera->getWidth(), CV_8UC1);
+            cv::resize(imageContour, imageDouble, imageDouble.size());
+            
+            // detection sur imageDouble
+            finder_2.findContours(imageDouble);
+            for(int i = 0; i < finder_2.size(); i++) {
+                contours.push_back(ofxCv::toOf(finder_2.getContour(i)));
+            }
+        }
+    }
+}
+void BoxDetector::mirroredImage(){
+    mirrored.setFromPixels(camera->getPixels());
+    //mirrored.mirror(true, true);
+}
+void BoxDetector::draw() {
+    for (int i = 0; i < contours.size(); i++) {
+        contours[i].draw();
+    }
+}
+
+vector<ofPolyline>& BoxDetector::getContours() {
+    return contours;
+}
+
+
