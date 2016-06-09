@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "threadedBoids.h"
+#include "BoidsThread.h"
 
 
 threadedBoids::threadedBoids(){
