@@ -19,8 +19,12 @@ public:
     ofxCv::ContourFinder finder_1, finder_2;
     vector<ofPolyline> contours;
     
-    cv::Mat     imageContour,imageFond,imageDouble;
+    cv::Mat     imageContour,imageFond;
+    cv::Mat     imageDouble;
+    cv ::Mat    *image1, *image2;
     ofImage mirrored;
     ofVideoGrabber *camera;
+    bool        isImage;
+
     
 };

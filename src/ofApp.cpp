@@ -60,10 +60,12 @@ void Entre2Mondes::draw() {
   // reset
   ofClear(0, 0);
     
-    //ofxCv::toOf(detector->imageContour, opencv);
-    //opencv.update();
-    //opencv.draw(0, 0);
-    
+    if (detector->isImage) {
+        ofxCv::toOf(detector->imageDouble, opencv);
+        opencv.update();
+    }
+
+    opencv.draw(0, 0);
   // Draws inside world and outside world in the projector output
   // The mask is used here  to draw the inside world correctly
   // Draws inside world over outside world as well

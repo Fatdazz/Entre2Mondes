@@ -17,13 +17,13 @@ public:
     
     threadedBoids();
     ~threadedBoids(){
-        waitForThread();
         stopThread();
     };
     void initBoids(int _width,int _height);
     void drawBoids();
     void drawLines();
     vector<Boid2d *> getBoids();
+  
     
 private:
     void threadedFunction();

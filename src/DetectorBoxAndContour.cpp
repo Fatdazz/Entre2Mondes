@@ -14,6 +14,7 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
     camera=cam;
     mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
     mirrored.setUseTexture(false);
+
     imageFond = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1);
     int w=40;
     // Draw a circle
@@ -51,7 +52,6 @@ void BoxDetector::threadedFunction() {
     while (isThreadRunning()) {
         
         if (camera->isFrameNew()) {
-            
             /// mask generator ///
             
             mirroredImage();
@@ -83,9 +83,11 @@ void BoxDetector::threadedFunction() {
             } /// il y a des modif a faire ici
             
             imageContour=imageContour+imageFond; // somme le fond et le poly
-            imageDouble = cv::Mat::zeros(2*camera->getHeight(), 2*camera->getWidth(), CV_8UC1);
-            cv::resize(imageContour, imageDouble, imageDouble.size());
-            
+            //imageDouble = cv::Mat::zeros(2*camera->getHeight(), 2*camera->getWidth(), CV_8UC1);
+            //cv::resize(imageContour, imageDouble, imageDouble.size());
+            isImage=false;
+            imageDouble=imageContour;
+            isImage=true;
             // detection sur imageDouble
             finder_2.findContours(imageDouble);
             for(int i = 0; i < finder_2.size(); i++) {

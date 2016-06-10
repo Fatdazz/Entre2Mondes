@@ -32,7 +32,7 @@ void threadedBoids::initBoids(int _width,int _height){
                                1000,
                                2);
         }
-    }  
+    }
 
     startThread();
 }
