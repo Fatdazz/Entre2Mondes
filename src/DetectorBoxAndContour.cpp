@@ -77,6 +77,7 @@ void BoxDetector::threadedFunction() {
                     }
                     ppt[i]=temp[i];
                 }
+
                 
                 cv::fillPoly( imageContour, ppt, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
                 

@@ -16,11 +16,11 @@ threadedBoids::threadedBoids(){
 void threadedBoids::initBoids(int _width,int _height){
     flock.setBounds(0, 0, _width,  _height);
     flock.setBoundmode(1);
-    NumGroup=3;
+    NumGroup=2;
     for (int i=0; i<NumGroup; i++) {
         flock.addGoup();
         
-        for (int j = 0; j < 100; j++) {
+        for (int j = 0; j < 20; j++) {
             flock.addBoidGroup(i,
                                ofVec2f(ofRandom(0, _width), ofRandom(0, _height)),
                                20,
@@ -30,7 +30,7 @@ void threadedBoids::initBoids(int _width,int _height){
                                12,
                                20,
                                1000,
-                               2);
+                               0.1);
         }
     }
 

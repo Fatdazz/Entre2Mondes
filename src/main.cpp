@@ -7,7 +7,7 @@
 
 
 
-constexpr int NUM_GROUPS = 6;
+constexpr int NUM_GROUPS = 2;
 
 
 

@@ -64,12 +64,17 @@ void Entre2Mondes::draw() {
         ofxCv::toOf(detector->imageDouble, opencv);
         opencv.update();
     }
-
+    ofFbo res;
+    res.allocate(2*PROJECTOR_WIDTH, projectorOutput.getCanvasHeight());
+    res.begin();
+    ofClear(255, 255, 255, 0);
     opencv.draw(0, 0);
+    opencv.draw(opencv.getWidth(), 0);
+    res.end();
   // Draws inside world and outside world in the projector output
   // The mask is used here  to draw the inside world correctly
   // Draws inside world over outside world as well
-  //mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, boxes).draw(0, 0);
+  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
   
   projectorOutput.end();
 

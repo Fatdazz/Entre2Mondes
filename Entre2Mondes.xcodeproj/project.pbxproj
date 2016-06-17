@@ -49,6 +49,7 @@
 		B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */; };
 		B6840996567E78436F7ECFAB /* ETF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B047FF96258DC01792B272DB /* ETF.cpp */; };
 		BCA780EE1D0438550032C870 /* DetectorBoxAndContour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCA780EC1D0438550032C870 /* DetectorBoxAndContour.cpp */; };
+		BCED19091D0B2B110025B52E /* OpenCVAlex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCED19071D0B2B110025B52E /* OpenCVAlex.cpp */; };
 		C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE75A3FBA2C2D87D14F06FE6 /* ObjectFinder.cpp */; };
 		CC9974970E326F40EE82C236 /* Boid3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ED66575A4C0FA762A2D7480 /* Boid3d.cpp */; };
 		D31F5C1B140C59B2AF1533A8 /* registration.c in Sources */ = {isa = PBXBuildFile; fileRef = 71958293AC5292DE4B7C619D /* registration.c */; };
@@ -308,6 +309,8 @@
 		BBAF9D981351C596CA67CAF9 /* hybridtracker.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = hybridtracker.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib/hybridtracker.hpp; sourceTree = SOURCE_ROOT; };
 		BCA780EB1D04382E0032C870 /* DetectorBoxAndContour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectorBoxAndContour.h; sourceTree = "<group>"; };
 		BCA780EC1D0438550032C870 /* DetectorBoxAndContour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectorBoxAndContour.cpp; sourceTree = "<group>"; };
+		BCED19071D0B2B110025B52E /* OpenCVAlex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenCVAlex.cpp; sourceTree = "<group>"; };
+		BCED19081D0B2B110025B52E /* OpenCVAlex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVAlex.h; sourceTree = "<group>"; };
 		BF2F2AA872288D30F53983EF /* tilt.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = tilt.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/tilt.c; sourceTree = SOURCE_ROOT; };
 		BF88F02779DD820913ACEA06 /* ofxTCPClient.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTCPClient.cpp; path = ../../../addons/ofxNetwork/src/ofxTCPClient.cpp; sourceTree = SOURCE_ROOT; };
 		C1A2E81B4FD0713346D7E806 /* affine.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = affine.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/affine.hpp; sourceTree = SOURCE_ROOT; };
@@ -1158,6 +1161,8 @@
 				282E7D18E6277B20207D9786 /* BoidsThread.h */,
 				BCA780EB1D04382E0032C870 /* DetectorBoxAndContour.h */,
 				BCA780EC1D0438550032C870 /* DetectorBoxAndContour.cpp */,
+				BCED19071D0B2B110025B52E /* OpenCVAlex.cpp */,
+				BCED19081D0B2B110025B52E /* OpenCVAlex.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1376,6 +1381,7 @@
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
+				BCED19091D0B2B110025B52E /* OpenCVAlex.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				BCA780EE1D0438550032C870 /* DetectorBoxAndContour.cpp in Sources */,
 				7ADB04AF67C568EAFAEBA546 /* ofxKinectExtras.cpp in Sources */,
