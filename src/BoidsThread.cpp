@@ -30,18 +30,18 @@ void threadedBoids::initBoids(int _width,int _height){
                                12,
                                20,
                                1000,
-                               0.1);
+                               2);
         }
     }
 
-    startThread();
+    //startThread();
 }
 
 void threadedBoids::threadedFunction(){
-    while (true) {
+    //while (true) {
         
         flock.update();
-    }
+    //}
 }
 
 void threadedBoids::drawBoids(){

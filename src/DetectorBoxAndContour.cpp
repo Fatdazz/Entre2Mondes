@@ -46,10 +46,10 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
     
     fillPoly( imageFond, ppt, npt, 1, cv::Scalar( 255, 255, 255 ), 8 );
     
-    startThread();
+    //startThread();
 }
 void BoxDetector::threadedFunction() {
-    while (isThreadRunning()) {
+    //while (isThreadRunning()) {
         
         if (camera->isFrameNew()) {
             /// mask generator ///
@@ -95,7 +95,7 @@ void BoxDetector::threadedFunction() {
                 contours.push_back(ofxCv::toOf(finder_2.getContour(i)));
             }
         }
-    }
+    //}
 }
 void BoxDetector::mirroredImage(){
     mirrored.setFromPixels(camera->getPixels());

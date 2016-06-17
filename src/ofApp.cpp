@@ -42,7 +42,9 @@ void Entre2Mondes::setup() {
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
-
+    if (!detector->isThreadRunning()) {
+        detector->startThread();
+    }
 
   // Update inside world
   insideWorld.update();
