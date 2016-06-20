@@ -6,7 +6,7 @@ BoxDetector::~BoxDetector() {
     waitForThread();
 }
 void BoxDetector::setup(ofVideoGrabber *cam) {
-    finder_1.setThreshold(200);
+    finder_1.setThreshold(220);
     finder_1.setMinAreaRadius(50);
     finder_1.setMaxAreaRadius(500);
     finder_1.setUseTargetColor(true);

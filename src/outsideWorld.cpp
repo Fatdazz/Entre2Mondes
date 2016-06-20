@@ -14,7 +14,6 @@ void OutsideWorld::setup(int width, int height){
 void OutsideWorld::update(){
   outsideWorld.begin();
   ofClear(255, 255, 255, 0);
-    
   img.draw(0, 0);
   outsideWorld.end();
 }

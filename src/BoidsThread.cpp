@@ -9,7 +9,6 @@
 
 #include "BoidsThread.h"
 
-
 threadedBoids::threadedBoids(){
     }
 
@@ -38,17 +37,16 @@ void threadedBoids::initBoids(int _width,int _height){
 }
 
 void threadedBoids::threadedFunction(){
-    //while (true) {
+
         
         flock.update();
-    //}
+
 }
 
 void threadedBoids::drawBoids(){
     
     for (int i=0; i < NumGroup; i++) {
         GroupBoid2d* g = flock.groupBoid.at(i);
-        ofSetColor(ofColor(255, 0, 0));
         int boidNum = g->boids.size();
         for (int j=0; j < boidNum; j++) {
             Boid2d* b = g->boids.at(j);
