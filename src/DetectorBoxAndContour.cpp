@@ -6,11 +6,11 @@ BoxDetector::~BoxDetector() {
     waitForThread();
 }
 void BoxDetector::setup(ofVideoGrabber *cam) {
-    finder_1.setThreshold(220);
+    finder_1.setThreshold(100);
     finder_1.setMinAreaRadius(50);
     finder_1.setMaxAreaRadius(500);
     finder_1.setUseTargetColor(true);
-    finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_RGB);
+    finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
     camera=cam;
     mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
     mirrored.setUseTexture(false);
