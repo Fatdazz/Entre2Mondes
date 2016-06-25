@@ -1,4 +1,3 @@
-ofxBoids_apoil
 ofxCv
 ofxGui
 ofxKinect
@@ -6,3 +5,4 @@ ofxNetwork
 ofxOpenCv
 ofxProjectorBlend
 ofxXmlSettings
+ofxBoids
