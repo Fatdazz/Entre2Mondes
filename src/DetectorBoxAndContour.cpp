@@ -6,11 +6,15 @@ BoxDetector::~BoxDetector() {
     waitForThread();
 }
 void BoxDetector::setup(ofVideoGrabber *cam) {
-    finder_1.setThreshold(100);
+    finder_1.setThreshold(200);
     finder_1.setMinAreaRadius(50);
     finder_1.setMaxAreaRadius(500);
     finder_1.setUseTargetColor(true);
     finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
+	finder_2.setThreshold(200);
+	finder_2.setMinAreaRadius(50);
+	finder_2.setMaxAreaRadius(500);
+	finder_2.setUseTargetColor(false);
     camera=cam;
     mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
     mirrored.setUseTexture(false);
@@ -63,11 +67,10 @@ void BoxDetector::threadedFunction() {
             {
                 imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
                 
-                cv::Point** temp;                                   // code pour passe une vector en tableau
-                int variable = finder_1.getContours().size();         // je crois qu'il y aun fuite
-                const cv::Point* ppt[variable];
-                temp = new cv::Point* [variable];
-                int npt[variable];
+				const size_t variable = finder_1.getContours().size();         // je crois qu'il y aun fuite
+                cv::Point** temp = new cv::Point*[variable];                                 // code pour passe une vector en tableau
+
+                int* npt = new int[variable];
                 
                 for (int i=0; i<variable; i++) {
                     npt[i]=finder_1.getContours()[i].size();
@@ -75,11 +78,10 @@ void BoxDetector::threadedFunction() {
                     for (int j=0; j<npt[i]; j++) {
                         temp[i][j] = finder_1.getContours()[i][j];
                     }
-                    ppt[i]=temp[i];
                 }
 
                 
-                cv::fillPoly( imageContour, ppt, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+                cv::fillPoly( imageContour, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
                 
             } /// il y a des modif a faire ici
             
@@ -90,7 +92,9 @@ void BoxDetector::threadedFunction() {
             imageDouble=imageContour;
             isImage=true;
             // detection sur imageDouble
+			
             finder_2.findContours(imageDouble);
+			
             for(int i = 0; i < finder_2.size(); i++) {
                 contours.push_back(ofxCv::toOf(finder_2.getContour(i)));
             }
