@@ -33,9 +33,9 @@ void Entre2Mondes::setup() {
   // This stores everything that will be projected on the windows
   outsideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight());
     
-    opencv.allocate(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, OF_IMAGE_COLOR);
+  opencv.allocate(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, OF_IMAGE_COLOR);
 
-    ///////////////////////////////////// fichier vitre windowMask.load("vitres1.png");
+  ///////////////////////////////////// fichier vitre windowMask.load("vitres1.png");
 	  
 }
 

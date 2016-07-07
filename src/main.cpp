@@ -41,45 +41,46 @@ int main( ){
     
     
     // Camera
-    ofVideoGrabber cam;
-    int camWidth,camHeight;
-    camWidth = 320;  // try to grab at this size.
-    camHeight = 240;
+	//ofVideoGrabber cam;
+	Camera camera;
+	int camWidth,camHeight;
+	camWidth = 320;  // try to grab at this size.
+	camHeight = 240;
+	/*
+	//we can now get back a list of devices.
+	vector<ofVideoDevice> devices = cam.listDevices();
     
-    //we can now get back a list of devices.
-    vector<ofVideoDevice> devices = cam.listDevices();
+	for(int i = 0; i < devices.size(); i++){
+	if(devices[i].bAvailable){
+	ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
+	}else{
+	ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
+	}
+	}
     
-    for(int i = 0; i < devices.size(); i++){
-        if(devices[i].bAvailable){
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
-        }else{
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
-        }
-    }
+	cam.setDeviceID(0);
+	cam.setDesiredFrameRate(60);
+	cam.initGrabber(camWidth, camHeight);
+	/// fin fr la camŽra
+	*/
     
-    cam.setDeviceID(0);
-    cam.setDesiredFrameRate(60);
-    cam.initGrabber(camWidth, camHeight);
-     /// fin fr la camŽra
-    
-    // run DetectorBoxAndContour
-    BoxDetector detector;
-    detector.setup(&cam, "fond.png");
-    
+	// run DetectorBoxAndContour
+	BoxDetector detector;
+	detector.setup(&camera, "fond.png");
 
-    shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
-    shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
+	std::shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
+	std::shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
 
-    entreDeuxMondesApp->control = controlPanelApp;
-    entreDeuxMondesApp->detector= &detector;
-    controlPanelApp->detector= &detector;
-    entreDeuxMondesApp->cam= &cam;
-    controlPanelApp->cam= &cam;
+	entreDeuxMondesApp->control = controlPanelApp;
+	entreDeuxMondesApp->detector= &detector;
+	controlPanelApp->detector= &detector;
+	entreDeuxMondesApp->cam= &camera;
+	controlPanelApp->cam= &camera;
     
     
-    ofRunApp(mainWindow, entreDeuxMondesApp);
-    ofRunApp(controlPanel, controlPanelApp);
-    ofRunMainLoop();
+	ofRunApp(mainWindow, entreDeuxMondesApp);
+	ofRunApp(controlPanel, controlPanelApp);
+	ofRunMainLoop();
 
 
 }

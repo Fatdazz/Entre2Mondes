@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
+#include "Camera.h"
 
 class BoxDetector : public ofThread {
 public:
@@ -23,7 +24,7 @@ public:
   cv::Mat     imageDouble;
   cv ::Mat    *image1, *image2;
   ofImage mirrored;
-  ofVideoGrabber *camera;
+  std::unique_ptr<Camera> cam;
   bool        isImage;
   ofImage imageFondImport;
     

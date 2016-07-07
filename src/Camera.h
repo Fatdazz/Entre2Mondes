@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxKinect.h"
-#include "ofxKinectForWindows2"
+#include "ofxKinectForWindows2.h"
 
 enum class CameraType {UNKNOWN, WEBCAM, KINECTv1, KINECTv2};
 
