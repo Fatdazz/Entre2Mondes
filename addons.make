@@ -1,4 +1,4 @@
-ofxBoids_apoil
+ofxBoids
 ofxCv
 ofxGui
 ofxKinect
@@ -6,3 +6,4 @@ ofxNetwork
 ofxOpenCv
 ofxProjectorBlend
 ofxXmlSettings
+ofxKinectForWindows2

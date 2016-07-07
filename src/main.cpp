@@ -64,13 +64,13 @@ int main( ){
     
     // run DetectorBoxAndContour
     BoxDetector detector;
-    detector.setup(&cam);
+    detector.setup(&cam, "fond.png");
     
 
-	shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
-	shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
+    shared_ptr<Entre2Mondes> entreDeuxMondesApp(new Entre2Mondes());
+    shared_ptr<ControlPanel> controlPanelApp(new ControlPanel());
 
-	entreDeuxMondesApp->control = controlPanelApp;
+    entreDeuxMondesApp->control = controlPanelApp;
     entreDeuxMondesApp->detector= &detector;
     controlPanelApp->detector= &detector;
     entreDeuxMondesApp->cam= &cam;
@@ -78,8 +78,8 @@ int main( ){
     
     
     ofRunApp(mainWindow, entreDeuxMondesApp);
-	ofRunApp(controlPanel, controlPanelApp);
-	ofRunMainLoop();
+    ofRunApp(controlPanel, controlPanelApp);
+    ofRunMainLoop();
 
 
 }
