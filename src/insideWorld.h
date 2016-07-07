@@ -30,6 +30,6 @@ class InsideWorld  {
   threadedBoids   boids;
   
   
-  int NumGroup = 3;
+  int NumGroup = 2;
   
 };

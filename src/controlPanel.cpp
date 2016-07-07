@@ -25,6 +25,8 @@ void ControlPanel::setup() {
 }
 
 void ControlPanel::update() {
+    cam->update();
+    
 	/*
 	ofSetWindowTitle(to_string(ofGetFrameRate()));
 
@@ -62,6 +64,7 @@ void ControlPanel::update() {
 }
 
 void ControlPanel::draw() {
+    cam->draw(0, 0);
 	/*
 
 	ofSetColor(255);

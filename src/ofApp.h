@@ -1,28 +1,29 @@
 #pragma once
 #include "ofMain.h"
+#include "ofxCv.h"
+#include "ofxKinect.h"
 #include "ofxProjectorBlend.h"
 #include "ofxXmlSettings.h"
+
 #include "Flock2d.h"
 #include "insideWorld.h"
 #include "outsideWorld.h"
 #include "masking.h"
-#include "ofxCv.h"
-#include "ofxKinect.h"
 #include "controlPanel.h"
 #include "Camera.h"
-#include "ContourDetectorThread.h"
+#include "DetectorBoxAndContour.h"
 
 
 #define PROJECTOR_COUNT 2
 //#define PROJECTOR_WIDTH 1920
 //#define PROJECTOR_HEIGHT 1080
-#define PROJECTOR_WIDTH 960
-#define PROJECTOR_HEIGHT 540
-#define PIXEL_OVERLAP 545
+#define PROJECTOR_WIDTH 320
+#define PROJECTOR_HEIGHT 240
+#define PIXEL_OVERLAP 0
 
 class Entre2Mondes : public ofBaseApp{
 
- public:
+public:
   void setup();
   void update();
   void draw();
@@ -56,20 +57,13 @@ class Entre2Mondes : public ofBaseApp{
   // Mask class to add FBOs together
   Masking mask;
 
-  // Static and dynamic mask generation
-  MaskGenerator maskGen;
-  vector<ofPolyline> poly;
-  ofFbo boxes;
-  ofImage windowMask;
-  BoxDetector detector;
-  ContourDetectorThread boxContour;
-
   // Pointer to the control panel window
-  shared_ptr<ControlPanel> control;  
-
-  // Camera
-  shared_ptr<Camera> camera;  
-
+  shared_ptr<ControlPanel> control;
+    
+  BoxDetector  *detector;
+  ofVideoGrabber *cam;
+    
+  ofImage        opencv; // image alex
   
 
 };

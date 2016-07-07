@@ -16,11 +16,14 @@ public:
     Flock2d flock;
     
     threadedBoids();
-    //~threadedBoids();
+    ~threadedBoids(){
+        stopThread();
+    };
     void initBoids(int _width,int _height);
     void drawBoids();
     void drawLines();
     vector<Boid2d *> getBoids();
+  
     
 private:
     void threadedFunction();

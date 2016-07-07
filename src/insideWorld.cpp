@@ -13,6 +13,10 @@ void InsideWorld::setup(int width, int height) {
 }
 
 void InsideWorld::update() {
+    
+    if(!boids.isThreadRunning()){
+        boids.startThread();
+    }
 
   // TODO: rellocate and use after camera update to optimize computer vision
   //cv::Rect roi(0, control->ROIY, stream.getWidth(), control->ROIH);
