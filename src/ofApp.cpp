@@ -82,6 +82,7 @@ void Entre2Mondes::draw() {
 
   // Draw the final result
   projectorOutput.draw();
+
 }
 
 //--------------------------------------------------------------

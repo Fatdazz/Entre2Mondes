@@ -16,8 +16,8 @@
 #define PROJECTOR_COUNT 2
 //#define PROJECTOR_WIDTH 1920
 //#define PROJECTOR_HEIGHT 1080
-#define PROJECTOR_WIDTH 320
-#define PROJECTOR_HEIGHT 240
+#define PROJECTOR_WIDTH 640
+#define PROJECTOR_HEIGHT 480
 #define PIXEL_OVERLAP 0
 
 class Entre2Mondes : public ofBaseApp{

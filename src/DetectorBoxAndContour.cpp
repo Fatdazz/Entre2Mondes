@@ -66,56 +66,67 @@ void BoxDetector::threadedFunction() {
             cv::Mat mat = ofxCv::toCv(mirrored);
             
             finder_1.findContours(mat); // detection cam
-            
-            {
-	      //imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
-                
-	      const size_t variable = finder_1.getContours().size();         // je crois qu'il y aun fuite
-	      cv::Point** temp = new cv::Point*[variable];                                 // code pour passe une vector en tableau
 
-	      int* npt = new int[variable];
+	    imageContour = cv::Mat::zeros(cv::Size(camera->getWidth(), camera->getHeight()), CV_8UC1); // mise a zero la matrix
                 
-	      for (int i=0; i<variable; i++) {
-		npt[i]=finder_1.getContours()[i].size();
-		temp[i]= new cv::Point[npt[i]];
-		for (int j=0; j<npt[i]; j++) {
-		  temp[i][j] = finder_1.getContours()[i][j];
-		}
+	    const size_t variable = finder_1.getContours().size();
+	    cv::Point** temp = new cv::Point*[variable]; // code pour passe une vector en tableau
+
+	    int* npt = new int[variable];
+                
+	    for (int i=0; i<variable; i++) {
+	      npt[i]=finder_1.getContours()[i].size();
+	      temp[i]= new cv::Point[npt[i]];
+	      for (int j=0; j<npt[i]; j++) {
+		temp[i][j] = finder_1.getContours()[i][j];
 	      }
+	    }
 
-                
-	      cv::fillPoly( imageContour, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
-                
-            } /// il y a des modif a faire ici
+	    cv::fillPoly( imageContour, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+
+	    for (auto i = 0; i < variable; i++){
+	      delete temp[i];
+	    }
+	    delete[] temp;
+	    delete[] npt;
             
-            imageContour=imageContour+imageFond; // somme le fond et le poly
-            //imageDouble = cv::Mat::zeros(2*camera->getHeight(), 2*camera->getWidth(), CV_8UC1);
-            //cv::resize(imageContour, imageDouble, imageDouble.size());
-            isImage=false;
-            imageDouble=imageContour;
-            isImage=true;
-            // detection sur imageDouble
+
+	    imageDouble = cv::Mat::zeros(cv::Size(2*camera->getWidth(), camera->getHeight()), CV_8UC1);
+	    cv::resize(imageContour, imageDouble, imageDouble.size());
+	    /*
+	      isImage=false;
+	      imageDouble=imageContour;
+	      isImage=true;
+	    */
+	    // detection sur imageDouble
+	    std::cout << "taille imagedouble: " << imageDouble.size() << std::endl;
+	    std::cout << "taille imagefond: " << imageFond.size() << std::endl;
+	    std::cout << "taille imageContour: " << imageContour.size() << std::endl;
+	    imageDouble = imageFond + imageDouble; // somme le fond et le poly
+	    //finder_2.findContours(imageDouble);
 			
-            finder_2.findContours(imageDouble);
-			
-            for(int i = 0; i < finder_2.size(); i++) {
+	    for(int i = 0; i < finder_2.size(); i++) {
 	      contours.push_back(ofxCv::toOf(finder_2.getContour(i)));
-            }
-        }
+	    }
+
+
+	}
 	//}
 }
 void BoxDetector::mirroredImage(){
-    mirrored.setFromPixels(camera->getPixels());
-    //mirrored.mirror(true, true);
+  mirrored.setFromPixels(camera->getPixels());
+  //mirrored.mirror(true, true);
 }
+
 void BoxDetector::draw() {
-    for (int i = 0; i < contours.size(); i++) {
-        contours[i].draw();
-    }
+  for (int i = 0; i < contours.size(); i++) {
+    contours[i].draw();
+  }
+
 }
 
 vector<ofPolyline>& BoxDetector::getContours() {
-    return contours;
+  return contours;
 }
 
 

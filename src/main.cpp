@@ -42,8 +42,8 @@ int main( ){
   // Camera
   ofVideoGrabber cam;
   int camWidth,camHeight;
-  camWidth = 320;  // try to grab at this size.
-  camHeight = 240;
+  camWidth = 640;  // try to grab at this size.
+  camHeight = 480;
     
   //we can now get back a list of devices.
   vector<ofVideoDevice> devices = cam.listDevices();
