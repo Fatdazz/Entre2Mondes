@@ -2,10 +2,8 @@
 
 #include "ofMain.h"
 
-#include "Camera.h"
-
 class OutsideWorld {
- public:
+public:
 
   
 
@@ -17,10 +15,8 @@ class OutsideWorld {
   
   ofFbo outsideWorld;
   
- private:
+private:
 
   ofImage img;
-
-  Camera cam;
 
 };

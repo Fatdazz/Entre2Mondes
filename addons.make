@@ -6,4 +6,3 @@ ofxNetwork
 ofxOpenCv
 ofxProjectorBlend
 ofxXmlSettings
-ofxKinectForWindows2

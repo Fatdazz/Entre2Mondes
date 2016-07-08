@@ -10,7 +10,6 @@
 #include "outsideWorld.h"
 #include "masking.h"
 #include "controlPanel.h"
-#include "Camera.h"
 #include "DetectorBoxAndContour.h"
 
 
