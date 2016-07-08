@@ -61,8 +61,8 @@ public:
   shared_ptr<ControlPanel> control;
     
   BoxDetector  *detector;
-  std::unique_ptr<Camera> cam;
-
+  ofVideoGrabber *cam;
+    
   ofImage        opencv; // image alex
   
 

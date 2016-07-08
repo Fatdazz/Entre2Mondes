@@ -49,7 +49,7 @@ public:
     ofImage flipImage;
 
     BoxDetector  *detector;
-  Camera cam;
+    ofVideoGrabber *cam;
 
 
 
