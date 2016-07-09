@@ -21,11 +21,9 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
     
         imageFond = cv::Mat::zeros(imageImport.getHeight(), imageImport.getWidth(), CV_8UC1);
         
-        cv::Point** temp;
-        int variable = finder_1.getContours().size();
-        const cv::Point* ppt[variable];
-        temp = new cv::Point* [variable];
-        int npt[variable];
+		const size_t variable = finder_1.getContours().size();
+		cv::Point** temp = new cv::Point*[variable];
+		int* npt = new int[variable];
         
         for (int i=0; i<variable; i++) {
             npt[i]=finder_1.getContours()[i].size();
@@ -33,11 +31,10 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
             for (int j=0; j<npt[i]; j++) {
                 temp[i][j] = finder_1.getContours()[i][j];
             }
-            ppt[i]=temp[i];
         }
         
         
-        cv::fillPoly( imageFond, ppt, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+        cv::fillPoly( imageFond, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
     ///// fin
     
     finder_1.setThreshold(150);
@@ -74,11 +71,17 @@ void BoxDetector::threadedFunction() {
             {
                 imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
                 
-                cv::Point** temp;                                   // code pour passe une vector en tableau
-                int variable = finder_1.getContours().size();         // je crois qu'il y aun fuite
-                const cv::Point* ppt[variable];
-                temp = new cv::Point* [variable];
-                int npt[variable];
+				const size_t variable = finder_1.getContours().size();
+				cv::Point** temp = new cv::Point*[variable];
+				int* npt = new int[variable];
+
+				for (int i = 0; i<variable; i++) {
+					npt[i] = finder_1.getContours()[i].size();
+					temp[i] = new cv::Point[npt[i]];
+					for (int j = 0; j<npt[i]; j++) {
+						temp[i][j] = finder_1.getContours()[i][j];
+					}
+				}
                 
                 for (int i=0; i<variable; i++) {
                     npt[i]=finder_1.getContours()[i].size();
@@ -86,11 +89,10 @@ void BoxDetector::threadedFunction() {
                     for (int j=0; j<npt[i]; j++) {
                         temp[i][j] = finder_1.getContours()[i][j];
                     }
-                    ppt[i]=temp[i];
                 }
 
                 
-                cv::fillPoly( imageContour, ppt, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+                cv::fillPoly( imageContour, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
                 
             } /// il y a des modif a faire ici
             cv::Mat temp;

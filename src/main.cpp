@@ -2,7 +2,6 @@
 #include "ofApp.h"
 #include "controlPanel.h"
 #include "parametersGUI.h"
-#include "Camera.h"
 #include "DetectorBoxAndContour.h"
 
 
