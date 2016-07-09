@@ -37,8 +37,31 @@ void threadedBoids::initBoids(int _width,int _height,BoxDetector  *_detector){
 }
 
 void threadedBoids::threadedFunction(){
-
-        
+    vector<vector<cv::Point>> t = detector->finder_2.getContours();
+    /*
+  
+    vector<vector<cv::Point>> t1;
+    t1.resize(t.size());
+    for (int i = 0; i< t.size(); i++) {
+        for (int j = 0 ; j< t[i].size(); j++) {
+            if (3<abs(t[i][j].x-t[i][(j+1)%t[i].size()].x)) {
+                t1[i].push_back(t[i][j]);
+            }
+        }
+    }
+   */
+    for (int i = 0; i< t.size(); i++) {
+        for (int j = 0 ; j< t[i].size(); j++) {
+          flock.addAttrationLine(ofPoint(t[i][j].x,t[i][j].y),
+                                 ofPoint(t[i][(j+1)%t[i].size()].x,t[i][(j+1)%t[i].size()].y),
+                                 -2,
+                                 2,
+                                 2,
+                                 1);
+            
+        }
+    }
+    
         flock.update();
 
 }
@@ -50,7 +73,6 @@ void threadedBoids::drawBoids(){
         int boidNum = g->boids.size();
         for (int j=0; j < boidNum; j++) {
             Boid2d* b = g->boids.at(j);
-            
             ofDrawRectangle(b->position.x, b->position.y, 5,5);
             float lm = 10.f;
             ofDrawLine(b->position.x, b->position.y, b->position.x + b->velocite.x*lm, b->position.y + b->velocite.y*lm);

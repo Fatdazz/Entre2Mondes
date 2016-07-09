@@ -52,9 +52,7 @@ void Entre2Mondes::update(){
   insideWorld.update();
 
   // Update outside world
-  outsideWorld.update();
-  
-  
+  //outsideWorld.update();
 }
 
 //--------------------------------------------------------------
@@ -80,10 +78,8 @@ void Entre2Mondes::draw() {
   // Draws inside world over outside world as well
   mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
   if (cam->isFrameNew()) {
-	  detector->draw();
+	  //detector->draw();
   }
-    
-  
   projectorOutput.end();
 
   // Draw the final result
