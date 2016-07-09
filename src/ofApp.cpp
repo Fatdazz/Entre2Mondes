@@ -52,7 +52,7 @@ void Entre2Mondes::update(){
   insideWorld.update();
 
   // Update outside world
-  //outsideWorld.update();
+  outsideWorld.update();
 }
 
 //--------------------------------------------------------------
