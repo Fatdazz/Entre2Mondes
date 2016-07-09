@@ -23,25 +23,26 @@ public:
     #if Cam == 0
     ofxKFW2::Device kinect;
     camVideo(){
+		videoWidth = 640;  // try to grab at this size.
+		videoHeight = 480;
         kinect.open();
         kinect.initDepthSource();
         kinect.initColorSource();
         kinect.initInfraredSource();
         kinect.initBodySource();
         kinect.initBodyIndexSource();
-        
     };
     
     
     void draw(int _x, int _y){
-        kinect.draw(_x, _y);
+		kinect.getColorSource()->draw(_x,_y);
     }
     
     bool isFrameNew(){
         return kinect.isFrameNew();
     }
     ofPixels& getPixels(){
-        return kinect.getPixels();
+        return kinect.getColorSource()->getPixels();
     }
     void update(){
         kinect.update();
