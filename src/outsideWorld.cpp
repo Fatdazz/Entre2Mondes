@@ -2,7 +2,7 @@
 
 void OutsideWorld::setup(int width, int height){
   // INIT IMG
-  img.load("feu.jpg");
+  img.load("fond.png");
 
   // INIT FBO
   outsideWorld.allocate(width, height); // TAILLE FENETRE
@@ -10,40 +10,37 @@ void OutsideWorld::setup(int width, int height){
   ofClear(255, 255, 255, 0);
   outsideWorld.end();
 
-  for (int i = 0; i < numGlitches; i++) {
-      glitches.emplace_back();
-      cout <<glitches.size()<< endl;
-    glitches[i].setup("feu.jpg");
-  }
+  // for (int i = 0; i < numGlitches; i++) {
+  //   glitches.emplace_back();
+  //   glitches[i].setup("feu.jpg");
+  // }
+  //glitches.setup("fond.png");
+  /*
+    glitches[1].setup("feu.jpg");
+    glitches[2].setup("feu.jpg");
+    glitches[3].setup("feu.jpg");
+    glitches[4].setup("feu.jpg");
+  */
 }
 
 void OutsideWorld::update(){
-    if (currentTime - previousTime > 2000) {
-        previousTime = ofGetElapsedTimeMillis();
-        for (int i = 0; i < numGlitches; i++) {
-            glitches[i].update();
-        }
-    }
-    
-    outsideWorld.begin();
+  outsideWorld.begin();
   ofClear(255, 255, 255, 0);
   img.draw(0, 0);
-    
-    for (int i = 0; i < numGlitches; i++) {
-        std::cout << "i: " << i << std::endl;
-        glitches[i].draw();
-    }
-  
-    outsideWorld.end();
-    //cout << " update "<< endl;
-    
+  outsideWorld.end();
+
   currentTime = ofGetElapsedTimeMillis();
-  
+  if (currentTime - previousTime > 2000) {
+    previousTime = ofGetElapsedTimeMillis();
+    //for (int i = 0; i < numGlitches; i++) {
+    //glitches.update();
+    //}
+  }
 }
 
-void OutsideWorld::draw(){
+void OutsideWorld::draw() {
   outsideWorld.draw(0, 0);
-    cout << " draw "<< endl;
-
-
+  //for (int i = 0; i < numGlitches; i++) {
+  //glitches.draw();
+  //}
 }
