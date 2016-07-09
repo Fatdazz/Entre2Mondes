@@ -15,8 +15,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fond2.svg"
-   inkscape:export-filename="/home/dimitri/Documents/development/of_v0.9.3_linux64_release/apps/myApps/Entre2Mondes/bin/data/fond2.png"
+   sodipodi:docname="fond.svg"
+   inkscape:export-filename="/home/dimitri/Documents/development/of_v0.9.3_linux64_release/apps/myApps/Entre2Mondes/bin/data/fond.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -93,12 +93,5 @@
        height="340"
        x="782.85712"
        y="649.50494" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3366"
-       width="465.71426"
-       height="117.14286"
-       x="391.42856"
-       y="780.93347" />
   </g>
 </svg>
