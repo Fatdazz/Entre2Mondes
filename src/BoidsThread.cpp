@@ -12,7 +12,7 @@
 threadedBoids::threadedBoids(){
     }
 
-void threadedBoids::initBoids(int _width,int _height){
+void threadedBoids::initBoids(int _width,int _height,BoxDetector  *_detector){
     flock.setBounds(0, 0, _width,  _height);
     flock.setBoundmode(1);
     NumGroup=2;
@@ -32,7 +32,7 @@ void threadedBoids::initBoids(int _width,int _height){
                                2);
         }
     }
-
+    detector = _detector;
     //startThread();
 }
 

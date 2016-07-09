@@ -9,7 +9,7 @@
 #pragma once
 #include "ofMain.h"
 
-#define Cam 0
+#define Cam 1
 
 #if Cam == 0
 #include "ofxKinectForWindows2.h"
