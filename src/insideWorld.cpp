@@ -1,6 +1,6 @@
 #include "insideWorld.h"
 
-void InsideWorld::setup(int width, int height) {
+void InsideWorld::setup(int width, int height, BoxDetector  *_detector) {
   // init fbo
   insideWorld.allocate(width, height); 
   insideWorld.begin();
@@ -8,7 +8,7 @@ void InsideWorld::setup(int width, int height) {
   insideWorld.end();
 
     
-    boids.initBoids(width, height);
+    boids.initBoids(width, height, _detector);
 
 }
 

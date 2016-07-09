@@ -7,6 +7,7 @@
 #include "ofxCv.h"
 #include "controlPanel.h"
 #include "BoidsThread.h"
+#include "DetectorBoxAndContour.h"
 
 /*
  * This class is the entry point for all the things that appear on the boxes
@@ -16,7 +17,7 @@
 class InsideWorld  {
  public:  
   
-  void setup(int width, int height);
+  void setup(int width, int height,BoxDetector  *_detector);
   void update();
   void draw();
   

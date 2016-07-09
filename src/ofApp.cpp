@@ -27,7 +27,7 @@ void Entre2Mondes::setup() {
   // In it we store everything that will be projected on the boxes
   // also the things projected on the contours of the windows
   // and everything related to it
-  insideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight());
+  insideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight(),detector);
 
   // Initialize the outside world
   // This stores everything that will be projected on the windows

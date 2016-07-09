@@ -2,7 +2,6 @@ ofxBoids
 ofxCv
 ofxGui
 ofxKinect
-ofxKinectForWindows2
 ofxNetwork
 ofxOpenCv
 ofxProjectorBlend
