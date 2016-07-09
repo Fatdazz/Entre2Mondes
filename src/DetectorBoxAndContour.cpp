@@ -1,11 +1,14 @@
 #include "DetectorBoxAndContour.h"
 
+// TODO: refaire tout le code
 
 BoxDetector::~BoxDetector() {
     stopThread();
-    waitForThread();
+    waitForThread(true);
 }
 void BoxDetector::setup(ofVideoGrabber *cam) {
+
+	
     
     ////// attention le code qui suit est une insulte à la notion même de l'imformatique ///////
     //// ps : je n'en suis pas fiére /////
@@ -58,7 +61,7 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
 }
 void BoxDetector::threadedFunction() {
     //while (isThreadRunning()) {
-        
+
         if (camera->isFrameNew()) {
             /// mask generator ///
             
@@ -103,9 +106,10 @@ void BoxDetector::threadedFunction() {
             isImage=true;
             // detection sur imageDouble
             contours.clear();
-            finder_2.findContours(imageDouble);
-            contoursMask = finder_2.getContours();
-            
+			protection = true;
+				finder_2.findContours(imageDouble);
+				contoursMask = finder_2.getContours();
+				analyzedFinder.send(contoursMask);
             
         }
     //}
@@ -115,10 +119,21 @@ void BoxDetector::mirroredImage(){
     //mirrored.mirror(true, true);
 }
 void BoxDetector::draw() {
+
+	//std::cout << "size: " << analyzedFinder[0].size() << std::endl;
+	vector<vector<cv::Point>> tmp;
+	analyzedFinder.tryReceive(tmp);
+	//int s = analyzedFinder[0].size();
     ofSetColor(ofColor::green);
-    for (int i = 0; i < contoursMask.size(); i++) {
-        for (int j = 0; j < contoursMask[i].size(); j++) {
-            ofDrawCircle(contoursMask[i][j].x, contoursMask[i][j].y, 2);
+    for (int i = 0; i < tmp.size(); i++) {
+        for (int j = 0; j < tmp[i].size(); j++) {
+			/*
+			if (s != analyzedFinder[i].size()) {
+				std::cout << "problem!" << std::endl;
+				std::cout << "i " << i << " j: " << j << " s: " << s << " size: " << contoursMask[i].size() << std::endl;
+			}
+			*/
+            ofDrawCircle(tmp[i][j].x, tmp[i][j].y, 2);
         }
     }
 }

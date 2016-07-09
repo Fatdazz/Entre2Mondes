@@ -21,11 +21,14 @@ public:
     
     cv::Mat     imageContour,imageFond;
     cv::Mat     imageDouble;
-    cv ::Mat    *image1, *image2;
+    cv::Mat    *image1, *image2;
     ofImage mirrored, imageImport;
     ofVideoGrabber *camera;
     bool        isImage;
     vector<vector<cv::Point>> contoursMask;
 
-    
+	bool protection;
+
+	ofThreadChannel<vector<vector<cv::Point>>> analyzedFinder;
+
 };

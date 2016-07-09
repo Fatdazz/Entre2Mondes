@@ -42,6 +42,8 @@ void Entre2Mondes::setup() {
 
 //--------------------------------------------------------------
 void Entre2Mondes::update(){
+	ofSetWindowTitle(std::to_string(ofGetFrameRate()));
+
     if (!detector->isThreadRunning()) {
         detector->startThread();
     }
@@ -77,7 +79,10 @@ void Entre2Mondes::draw() {
   // The mask is used here  to draw the inside world correctly
   // Draws inside world over outside world as well
   mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
-    detector->draw();
+  if (cam->isFrameNew()) {
+	  detector->draw();
+  }
+    
   
   projectorOutput.end();
 
