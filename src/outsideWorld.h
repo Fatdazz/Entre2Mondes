@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "FboGlitch.h"
 
+constexpr int numGlitches = 10;
+
 class OutsideWorld {
 public:
 
@@ -20,7 +22,7 @@ private:
 
   ofImage img;
   std::vector<FboGlitch> glitches;
-  constexpr int numGlitches;
+
 
   float currentTime;
   float previousTime;

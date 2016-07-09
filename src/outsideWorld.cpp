@@ -11,7 +11,7 @@ void OutsideWorld::setup(int width, int height){
   outsideWorld.end();
 
   for (int i = 0; i < numGlitches; i++) {
-    glitches.setup("feu.jpg");
+    glitches[i].setup("feu.jpg");
   }
 }
 
@@ -24,11 +24,15 @@ void OutsideWorld::update(){
   currentTime = ofGetElapsedTimeMillis();
   if (currentTime - previousTime > 2000) {
     previousTime = ofGetElapsedTimeMillis();
-    glitches.update();
+    for (int i = 0; i < numGlitches; i++) {
+      glitches[i].update();
+    }
   }
 }
 
 void OutsideWorld::draw(){
   outsideWorld.draw(0, 0);
-  glitches.draw();
+  for (int i = 0; i < numGlitches; i++) {
+    glitches[i].draw();
+  }
 }
