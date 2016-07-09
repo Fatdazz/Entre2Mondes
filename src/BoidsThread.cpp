@@ -19,7 +19,7 @@ void threadedBoids::initBoids(int _width,int _height){
     for (int i=0; i<NumGroup; i++) {
         flock.addGoup();
         
-        for (int j = 0; j < 20; j++) {
+        for (int j = 0; j < 100; j++) {
             flock.addBoidGroup(i,
                                ofVec2f(ofRandom(0, _width), ofRandom(0, _height)),
                                20,

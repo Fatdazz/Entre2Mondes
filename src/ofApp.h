@@ -1,15 +1,15 @@
 #pragma once
 #include "ofMain.h"
-#include "ofxCv.h"
-#include "ofxKinect.h"
 #include "ofxProjectorBlend.h"
 #include "ofxXmlSettings.h"
-
 #include "Flock2d.h"
 #include "insideWorld.h"
 #include "outsideWorld.h"
 #include "masking.h"
+#include "ofxCv.h"
+#include "ofxKinect.h"
 #include "controlPanel.h"
+#include "Camera.h"
 #include "DetectorBoxAndContour.h"
 
 
@@ -22,7 +22,7 @@
 
 class Entre2Mondes : public ofBaseApp{
 
-public:
+ public:
   void setup();
   void update();
   void draw();

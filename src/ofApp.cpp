@@ -77,12 +77,12 @@ void Entre2Mondes::draw() {
   // The mask is used here  to draw the inside world correctly
   // Draws inside world over outside world as well
   mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
+    detector->draw();
   
   projectorOutput.end();
 
   // Draw the final result
   projectorOutput.draw();
-
 }
 
 //--------------------------------------------------------------
