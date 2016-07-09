@@ -8,7 +8,8 @@
 
 #pragma once
 #include "ofMain.h"
-#define Cam 1
+
+#define Cam 0
 
 #if Cam == 0
 #include "ofxKinectForWindows2.h"
@@ -20,7 +21,31 @@ class camVideo{
 public:
     int videoWidth,videoHeight;
     #if Cam == 0
+    ofxKFW2::Device kinect;
+    camVideo(){
+        kinect.open();
+        kinect.initDepthSource();
+        kinect.initColorSource();
+        kinect.initInfraredSource();
+        kinect.initBodySource();
+        kinect.initBodyIndexSource();
+        
+    };
     
+    
+    void draw(int _x, int _y){
+        kinect.draw(_x, _y);
+    }
+    
+    bool isFrameNew(){
+        return kinect.isFrameNew();
+    }
+    ofPixels& getPixels(){
+        return kinect.getPixels();
+    }
+    void update(){
+        cam.update();
+    }
     #else
     ofVideoGrabber cam;
     camVideo(){
@@ -44,7 +69,6 @@ public:
     };
     void draw(int _x, int _y){
         cam.draw(_x, _y);
-        
     }
     
     bool isFrameNew(){
