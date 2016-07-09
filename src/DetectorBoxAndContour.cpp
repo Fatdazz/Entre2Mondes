@@ -7,21 +7,23 @@ BoxDetector::~BoxDetector() {
 }
 void BoxDetector::setup(ofVideoGrabber *cam, std::string image) {
 
-  imageFondImport.setUseTexture(false);
-  imageFondImport.load(image);
-  imageFond = ofxCv::toCv(imageFondImport);
-  finder_1.setThreshold(200);
-  finder_1.setMinAreaRadius(50);
-  finder_1.setMaxAreaRadius(500);
-  finder_1.setUseTargetColor(true);
-  finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
-  finder_2.setThreshold(200);
-  finder_2.setMinAreaRadius(50);
-  finder_2.setMaxAreaRadius(500);
-  finder_2.setUseTargetColor(false);
-  camera=cam;
-  mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
-  mirrored.setUseTexture(false);
+    imageFondImport.setUseTexture(false);
+    imageFondImport.load(image);
+    imageFond = ofxCv::toCv(imageFondImport);
+    finder_1.setThreshold(200);
+    finder_1.setMinAreaRadius(50);
+    finder_1.setMaxAreaRadius(500);
+    finder_1.setUseTargetColor(true);
+    finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
+    finder_2.setThreshold(200);
+    finder_2.setMinAreaRadius(50);
+    finder_2.setMaxAreaRadius(500);
+    finder_2.setUseTargetColor(false);
+    camera=cam;
+    mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
+    mirrored.setUseTexture(false);
+    imageDouble = imageFond;
+    
   /*
     imageFond = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1);
     int w=40;
@@ -91,8 +93,8 @@ void BoxDetector::threadedFunction() {
 	    delete[] npt;
             
 
-	    imageDouble = cv::Mat::zeros(cv::Size(2*camera->getWidth(), camera->getHeight()), CV_8UC1);
-	    cv::resize(imageContour, imageDouble, imageDouble.size());
+	    imageDouble = cv::Mat::zeros(imageDouble.size(), CV_8UC3);
+	    //cv::resize(imageContour, imageDouble, imageDouble.size());
 	    /*
 	      isImage=false;
 	      imageDouble=imageContour;
