@@ -3,6 +3,7 @@
 #include "controlPanel.h"
 #include "parametersGUI.h"
 #include "DetectorBoxAndContour.h"
+#include "Camera.h"
 
 
 
@@ -40,25 +41,7 @@ int main( ){
     
     
     // Camera
-    ofVideoGrabber cam;
-    int camWidth,camHeight;
-    camWidth = 640;  // try to grab at this size.
-    camHeight = 480;
-    
-    //we can now get back a list of devices.
-    vector<ofVideoDevice> devices = cam.listDevices();
-    
-    for(int i = 0; i < devices.size(); i++){
-        if(devices[i].bAvailable){
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
-        }else{
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
-        }
-    }
-    
-    cam.setDeviceID(0);
-    cam.setDesiredFrameRate(60);
-    cam.initGrabber(camWidth, camHeight);
+    camVideo cam;
      /// fin fr la camŽra
     
     // run DetectorBoxAndContour

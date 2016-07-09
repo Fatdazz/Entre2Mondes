@@ -6,7 +6,7 @@ BoxDetector::~BoxDetector() {
     stopThread();
     waitForThread(true);
 }
-void BoxDetector::setup(ofVideoGrabber *cam) {
+void BoxDetector::setup(camVideo *cam) {
 
 	
     

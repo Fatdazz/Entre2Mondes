@@ -59,7 +59,7 @@ class Entre2Mondes : public ofBaseApp{
   shared_ptr<ControlPanel> control;
     
   BoxDetector  *detector;
-  ofVideoGrabber *cam;
+  camVideo *cam;
     
   ofImage        opencv; // image alex
   

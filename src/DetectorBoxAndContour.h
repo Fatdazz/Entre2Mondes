@@ -2,12 +2,13 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
+#include "Camera.h"
 
 class BoxDetector : public ofThread {
 public:
     ~BoxDetector();
     
-    void setup(ofVideoGrabber *cam);
+    void setup(camVideo *cam);
     void draw();
     void drawAlex();
     void mirroredImage();
@@ -23,7 +24,7 @@ public:
     cv::Mat     imageDouble;
     cv::Mat    *image1, *image2;
     ofImage mirrored, imageImport;
-    ofVideoGrabber *camera;
+    camVideo *camera;
     bool        isImage;
     vector<vector<cv::Point>> contoursMask;
 
