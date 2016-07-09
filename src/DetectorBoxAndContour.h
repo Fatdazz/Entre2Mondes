@@ -25,6 +25,7 @@ public:
     ofImage mirrored, imageImport;
     ofVideoGrabber *camera;
     bool        isImage;
+    vector<vector<cv::Point>> contoursMask;
 
     
 };

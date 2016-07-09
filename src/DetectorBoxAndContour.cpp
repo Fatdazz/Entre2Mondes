@@ -104,6 +104,8 @@ void BoxDetector::threadedFunction() {
             // detection sur imageDouble
             contours.clear();
             finder_2.findContours(imageDouble);
+            contoursMask = finder_2.getContours();
+            
             
         }
     //}
@@ -114,9 +116,9 @@ void BoxDetector::mirroredImage(){
 }
 void BoxDetector::draw() {
     ofSetColor(ofColor::green);
-    for (int i = 0; i < finder_2.size(); i++) {
-        for (int j = 0; j < finder_2.getContour(i).size(); j++) {
-            ofDrawCircle(finder_2.getContour(i)[j].x, finder_2.getContour(i)[j].y, 4);
+    for (int i = 0; i < contoursMask.size(); i++) {
+        for (int j = 0; j < contoursMask[i].size(); j++) {
+            ofDrawCircle(contoursMask[i][j].x, contoursMask[i][j].y, 2);
         }
     }
 }
