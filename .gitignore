@@ -534,3 +534,5 @@ bin/*
 !bin/data/*
 
 *.orig
+
+*.db

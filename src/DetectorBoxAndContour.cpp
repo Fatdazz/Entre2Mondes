@@ -38,8 +38,14 @@ void BoxDetector::setup(ofVideoGrabber *cam) {
         
         
         cv::fillPoly( imageFond, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
-    ///// fin
     
+		for (size_t i = 0; i < variable; i++)
+		{
+			delete temp[i];
+		}
+		delete[] temp;
+		delete[] npt;
+
     finder_1.setThreshold(150);
     finder_1.setMinAreaRadius(50);
     finder_1.setMaxAreaRadius(500);
@@ -71,7 +77,6 @@ void BoxDetector::threadedFunction() {
             
             finder_1.findContours(mat); // detection cam
             
-            {
                 imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
                 
 				const size_t variable = finder_1.getContours().size();
@@ -86,6 +91,7 @@ void BoxDetector::threadedFunction() {
 					}
 				}
                 
+				/*
                 for (int i=0; i<variable; i++) {
                     npt[i]=finder_1.getContours()[i].size();
                     temp[i]= new cv::Point[npt[i]];
@@ -93,14 +99,22 @@ void BoxDetector::threadedFunction() {
                         temp[i][j] = finder_1.getContours()[i][j];
                     }
                 }
+				*/
+				
 
                 
                 cv::fillPoly( imageContour, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
-                
-            } /// il y a des modif a faire ici
-            cv::Mat temp;
-            cv::resize(imageContour, temp, imageFond.size());
-            imageDouble= temp + imageFond;
+
+				for (size_t i = 0; i < variable; i++)
+				{
+					delete temp[i];
+				}
+				delete[] temp;
+				delete[] npt;
+
+				cv::Mat t;
+            cv::resize(imageContour, t, imageFond.size());
+            imageDouble= t + imageFond;
             isImage=false;
             //imageDouble=imageContour;
             isImage=true;
