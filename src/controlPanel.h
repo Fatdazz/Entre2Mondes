@@ -7,6 +7,7 @@
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
 #include "DetectorBoxAndContour.h"
+#include "Camera.h"
 
 
 
@@ -49,7 +50,7 @@ public:
     ofImage flipImage;
 
     BoxDetector  *detector;
-    ofVideoGrabber *cam;
+    camVideo *cam;
 
 
 

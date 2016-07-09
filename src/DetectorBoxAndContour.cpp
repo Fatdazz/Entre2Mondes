@@ -6,7 +6,9 @@ BoxDetector::~BoxDetector() {
     stopThread();
     waitForThread(true);
 }
-void BoxDetector::setup(ofVideoGrabber *cam) {
+
+void BoxDetector::setup(camVideo *cam) {
+
     
     ////// attention le code qui suit est une insulte à la notion même de l'imformatique ///////
     //// ps : je n'en suis pas fiére /////
