@@ -22,5 +22,8 @@ private:
   std::vector<FboGlitch> glitches;
   constexpr int numGlitches;
 
+  float currentTime;
+  float previousTime;
+
 
 };

@@ -7,3 +7,4 @@ ofxNetwork
 ofxOpenCv
 ofxProjectorBlend
 ofxXmlSettings
+ofxPostGlitch

@@ -21,7 +21,11 @@ void OutsideWorld::update(){
   img.draw(0, 0);
   outsideWorld.end();
 
-  glitches.update();
+  currentTime = ofGetElapsedTimeMillis();
+  if (currentTime - previousTime > 2000) {
+    previousTime = ofGetElapsedTimeMillis();
+    glitches.update();
+  }
 }
 
 void OutsideWorld::draw(){
