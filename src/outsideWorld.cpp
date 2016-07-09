@@ -8,7 +8,11 @@ void OutsideWorld::setup(int width, int height){
   outsideWorld.allocate(width, height); // TAILLE FENETRE
   outsideWorld.begin();
   ofClear(255, 255, 255, 0);
-  outsideWorld.end(); 
+  outsideWorld.end();
+
+  for (int i = 0; i < numGlitches; i++) {
+    glitches.setup("feu.jpg");
+  }
 }
 
 void OutsideWorld::update(){
@@ -16,9 +20,11 @@ void OutsideWorld::update(){
   ofClear(255, 255, 255, 0);
   img.draw(0, 0);
   outsideWorld.end();
+
+  glitches.update();
 }
 
 void OutsideWorld::draw(){
   outsideWorld.draw(0, 0);
-
+  glitches.draw();
 }

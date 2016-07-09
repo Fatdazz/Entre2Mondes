@@ -1,9 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+#include "FboGlitch.h"
 
 class OutsideWorld {
- public:
+public:
 
   
 
@@ -15,8 +16,11 @@ class OutsideWorld {
   
   ofFbo outsideWorld;
   
- private:
+private:
 
   ofImage img;
+  std::vector<FboGlitch> glitches;
+  constexpr int numGlitches;
+
 
 };
