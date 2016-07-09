@@ -1,9 +1,9 @@
-ofxBoids
+ofxBoids_apoil
 ofxCv
 ofxGui
 ofxKinect
 ofxNetwork
 ofxOpenCv
+ofxPostGlitch
 ofxProjectorBlend
 ofxXmlSettings
-ofxPostGlitch

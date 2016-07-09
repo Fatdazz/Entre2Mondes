@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "FboGlitch.h"
 
+
 constexpr int numGlitches = 10;
 
 class OutsideWorld {
