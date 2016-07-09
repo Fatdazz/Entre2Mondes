@@ -105,7 +105,8 @@ void BoxDetector::threadedFunction() {
 
     cv::Mat t;
     cv::resize(imageContour, t, imageFond.size());
-    imageDouble= t + imageFond;
+    //imageDouble= t + imageFond;
+      imageDouble = imageFond;
     isImage=false;
     //imageDouble=imageContour;
     isImage=true;
@@ -132,19 +133,12 @@ void BoxDetector::mirroredImage(){
 }
 void BoxDetector::draw() {
 
-  //std::cout << "size: " << analyzedFinder[0].size() << std::endl;
   vector<vector<cv::Point>> tmp;
   analyzedFinder.tryReceive(tmp);
-  //int s = analyzedFinder[0].size();
   ofSetColor(ofColor::green);
   for (int i = 0; i < tmp.size(); i++) {
     for (int j = 0; j < tmp[i].size(); j++) {
-      /*
-	if (s != analyzedFinder[i].size()) {
-	std::cout << "problem!" << std::endl;
-	std::cout << "i " << i << " j: " << j << " s: " << s << " size: " << contoursMask[i].size() << std::endl;
-	}
-      */
+
       ofDrawCircle(tmp[i][j].x, tmp[i][j].y, 2);
     }
   }
