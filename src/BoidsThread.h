@@ -11,6 +11,7 @@
 #include "ofMain.h"
 #include "Flock2d.h"
 #include "DetectorBoxAndContour.h"
+
 class threadedBoids: public ofThread{
 public:
     Flock2d flock;

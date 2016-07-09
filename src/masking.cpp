@@ -34,7 +34,7 @@ ofFbo Masking::applyMaskToFbo(const ofFbo& fboMasked,  const ofFbo& fboBackgroun
 
 ofFbo Masking::applyMaskToFbo(const ofFbo& fboMasked, const ofFbo& fboBackground, const ofFbo& fboMask) {
   mask.load("shader/mask"); // why??? otherwise shader won't load
-  cout << "ici" << endl;
+  //cout << "ici" << endl;
 	res.allocate(fboMasked.getWidth(), fboMasked.getHeight());
 
 	res.begin();
