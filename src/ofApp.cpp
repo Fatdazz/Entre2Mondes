@@ -12,9 +12,9 @@ void Entre2Mondes::setup() {
   projectorOutput.gamma[0] = .5;
   projectorOutput.blendPower[0] = 1;
 
-  projectorTwoOffset = 0;
+  projectorTwoOffset = 3;
 
-  projectorOutput.luminance[0] = 0;
+  projectorOutput.luminance[0] = 0.55;
 
   //ofSetWindowShape(projectorOutput.getDisplayWidth(), projectorOutput.getDisplayHeight());
 
@@ -88,7 +88,9 @@ void Entre2Mondes::draw() {
 
 //--------------------------------------------------------------
 void Entre2Mondes::keyPressed(int key){
-
+	if (key == '&') {           ///// Fullscreen
+		ofToggleFullscreen();
+	}
 }
 
 //--------------------------------------------------------------

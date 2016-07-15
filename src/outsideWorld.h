@@ -1,10 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "FboGlitch.h"
 
-
-constexpr int numGlitches = 1;
 
 class OutsideWorld {
 public:
@@ -22,8 +19,6 @@ public:
 private:
 
   ofImage img;
-  FboGlitch glitches;
-
 
   float currentTime;
   float previousTime;

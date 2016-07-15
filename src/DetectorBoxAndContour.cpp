@@ -12,13 +12,14 @@ void BoxDetector::setup(camVideo *cam) {
     
     ////// attention le code qui suit est une insulte à la notion même de l'imformatique ///////
     //// ps : je n'en suis pas fiére /////
-    imageImport.load("fond.png");
+    imageImport.load("TEST01.png");
     cv::Mat imageFondImport=ofxCv::toCv(imageImport);
     finder_1.setThreshold(250);
     finder_1.setMinAreaRadius(0);
     finder_1.setMaxAreaRadius(5000);
     finder_1.setUseTargetColor(true);
     finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
+	finder_1.setFindHoles(true);
     
     finder_1.findContours(imageFondImport);
     
@@ -35,8 +36,7 @@ void BoxDetector::setup(camVideo *cam) {
 	      temp[i][j] = finder_1.getContours()[i][j];
 	    }
 	}
-        
-        
+            
 	cv::fillPoly( imageFond, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
 
 	finder_1.setThreshold(150);

@@ -15,11 +15,11 @@ threadedBoids::threadedBoids(){
 void threadedBoids::initBoids(int _width,int _height,BoxDetector  *_detector){
     flock.setBounds(0, 0, _width,  _height);
     flock.setBoundmode(1);
-    NumGroup=2;
+    NumGroup=1;
     for (int i=0; i<NumGroup; i++) {
         flock.addGoup();
         
-        for (int j = 0; j < 100; j++) {
+        for (int j = 0; j < 400; j++) {
             flock.addBoidGroup(i,
                                ofVec2f(ofRandom(0, _width), ofRandom(0, _height)),
                                20,
@@ -37,7 +37,7 @@ void threadedBoids::initBoids(int _width,int _height,BoxDetector  *_detector){
 }
 
 void threadedBoids::threadedFunction(){
-    vector<vector<cv::Point>> t = detector->finder_2.getContours();
+   // vector<vector<cv::Point>> t = detector->finder_2.getContours();
     /*
   
     vector<vector<cv::Point>> t1;
@@ -49,7 +49,7 @@ void threadedBoids::threadedFunction(){
             }
         }
     }
-   */
+   
     for (int i = 0; i< t.size(); i++) {
         for (int j = 0 ; j< t[i].size(); j++) {
           flock.addAttrationLine(ofPoint(t[i][j].x,t[i][j].y),
@@ -61,7 +61,7 @@ void threadedBoids::threadedFunction(){
             
         }
     }
-    
+    */
         flock.update();
 
 }
