@@ -10,6 +10,7 @@ void ControlPanel::setup() {
   //contourFinder.setInvert(true); // find black instead of white
 
   gui.setup();
+  /*
   gui.add(threshold.set("Threshold", 128, 0, 255));
   gui.add(trackH.set("Track Hue", false));
   gui.add(trackHS.set("Track Hue/Saturation", false));
@@ -19,20 +20,24 @@ void ControlPanel::setup() {
   gui.add(h.set("Hue value", 128, 0, 255));
   gui.add(s.set("Saturation value", 128, 0, 255));
   gui.add(b.set("Brightness value", 128, 0, 255));	
+  */
 
- // gui.add(ROIH.set("ROI H", 0, 0, kinect->getHeight()));
-  //gui.add(ROIY.set("ROI Y", 0, 0, kinect->getHeight()));
+  gui.add(ROIH.set("ROI H", 0, 0, cam->getHeight()));
+  gui.add(ROIY.set("ROI Y", 0, 0, cam->getHeight()));
 }
 
 void ControlPanel::update() {
     cam->update();
     
-	/*
-	ofSetWindowTitle(to_string(ofGetFrameRate()));
+	
+	//ofSetWindowTitle(to_string(ofGetFrameRate()));
 
-	//if (ROIH + ROIY > kinect->height) {
-	//	ROIH = kinect->height - ROIY;
-	//}
+	if (ROIH + ROIY > cam->getHeight()) {
+		ROIH = cam->getHeight() - ROIY;
+	}
+
+	detector->ROIH.send(ROIH);
+	detector->ROIY.send(ROIY);
 
   //targetColor.setHsb(h, s, b);
 
@@ -40,6 +45,7 @@ void ControlPanel::update() {
 
     //flipImage = kinect->getPixels();
 
+	/*
     flipImage.mirror(true, true);
 
     if (trackH) {
@@ -57,9 +63,9 @@ void ControlPanel::update() {
 		
     contourFinder.setThreshold(threshold);
     contourFinder.findContours(flipImage.getPixels());
-
+	*/
   //}
-  */
+  
 
 }
 
@@ -80,13 +86,17 @@ void ControlPanel::draw() {
 		contours.draw();
 	}	
 
+
+	*/
+	ofSetColor(ofColor::purple);
 	ofSetLineWidth(3);
 	ofNoFill();
-
-	//ofDrawRectangle(0, ROIY, kinect->getWidth(), ROIH);
-
-
+	ofDrawRectangle(0, ROIY, cam->getWidth(), ROIH);
+	ofSetColor(ofColor::white);
 	gui.draw();
+
+	/*
+	
 
 	ofTranslate(8, 275);
 	ofFill();

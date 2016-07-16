@@ -12,15 +12,17 @@ void BoxDetector::setup(camVideo *cam) {
     
     ////// attention le code qui suit est une insulte à la notion même de l'imformatique ///////
     //// ps : je n'en suis pas fière /////
-    imageImport.load("TEST01.png");
+	imageImport.load("TEST01.png");
+	roiy = 0;
+	roih = imageImport.getHeight();
     cv::Mat imageFondImport=ofxCv::toCv(imageImport);
+	
     finder_1.setThreshold(250);
     finder_1.setMinAreaRadius(0);
     finder_1.setMaxAreaRadius(5000);
     finder_1.setUseTargetColor(true);
     finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
 	finder_1.setFindHoles(true);
-    
     finder_1.findContours(imageFondImport);
     
         imageFond = cv::Mat::zeros(imageImport.getHeight(), imageImport.getWidth(), CV_8UC1);
@@ -66,10 +68,16 @@ void BoxDetector::threadedFunction() {
 
   if (camera->isFrameNew()) {
     /// mask generator ///
-            
+
+	  ROIH.tryReceive(roih);
+	  ROIY.tryReceive(roiy);
+
+	  cv::Rect roi(0, roiy, camera->getWidth(), roih);
+
     mirroredImage();
             
     cv::Mat mat = ofxCv::toCv(mirrored);
+	mat = mat(roi);
             
     finder_1.findContours(mat); // detection cam
             

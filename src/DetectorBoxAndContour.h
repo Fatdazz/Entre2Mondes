@@ -31,5 +31,9 @@ public:
 	bool protection;
 
 	ofThreadChannel<vector<vector<cv::Point>>> analyzedFinder;
+	ofThreadChannel<ofParameter<int>> ROIH;
+	ofThreadChannel<ofParameter<int>> ROIY;
+	ofParameter<int> roiy;
+	ofParameter<int> roih;
 
 };
