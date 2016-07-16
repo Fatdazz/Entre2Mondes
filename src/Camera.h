@@ -9,7 +9,7 @@
 #pragma once
 #include "ofMain.h"
 
-#define Cam 1
+#define Cam 0
 
 #if Cam == 0
 #include "ofxKinectForWindows2.h"
@@ -23,8 +23,8 @@ public:
     #if Cam == 0
     ofxKFW2::Device kinect;
     camVideo(){
-		videoWidth = 640;  // try to grab at this size.
-		videoHeight = 480;
+		videoWidth = 1920;  // try to grab at this size.
+		videoHeight = 1080;
         kinect.open();
         kinect.initDepthSource();
         kinect.initColorSource();

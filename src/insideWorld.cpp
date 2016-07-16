@@ -47,7 +47,7 @@ void InsideWorld::update() {
   
   insideWorld.begin(); // FBO
   ofClear(255, 255, 255, 0);
-  ofBackground(0, 0, 0);
+  ofBackground(255, 255, 255);
   ofSetColor(ofColor::blue);  
   boids.drawBoids();
   insideWorld.end();

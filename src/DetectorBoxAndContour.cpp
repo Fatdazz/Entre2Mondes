@@ -11,7 +11,7 @@ void BoxDetector::setup(camVideo *cam) {
 
     
     ////// attention le code qui suit est une insulte à la notion même de l'imformatique ///////
-    //// ps : je n'en suis pas fiére /////
+    //// ps : je n'en suis pas fière /////
     imageImport.load("TEST01.png");
     cv::Mat imageFondImport=ofxCv::toCv(imageImport);
     finder_1.setThreshold(250);
@@ -105,8 +105,8 @@ void BoxDetector::threadedFunction() {
 
     cv::Mat t;
     cv::resize(imageContour, t, imageFond.size());
-    //imageDouble= t + imageFond;
-      imageDouble = imageFond;
+    imageDouble= t + imageFond;
+     // imageDouble = imageFond;
     isImage=false;
     //imageDouble=imageContour;
     isImage=true;
@@ -128,9 +128,13 @@ void BoxDetector::threadedFunction() {
   //}
 }
 void BoxDetector::mirroredImage(){
-  mirrored.setFromPixels(camera->getPixels());
-  //mirrored.mirror(true, true);
+	if (camera->isFrameNew()) {
+		mirrored.setFromPixels(camera->getPixels());
+	}
+  
+	mirrored.mirror(true, true);
 }
+
 void BoxDetector::draw() {
 
   vector<vector<cv::Point>> tmp;

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "GlitchManager.h"
 
+constexpr int NUM_GLITCHES = 5;
 
 class OutsideWorld {
 public:
@@ -20,8 +22,10 @@ private:
 
   ofImage img;
 
-  float currentTime;
-  float previousTime;
+  uint64_t currentTime;
 
+  std::vector<Glitch> glitches;
+  std::vector<uint64_t> randomTimes;
+  std::vector<uint64_t> previousTimes;
 
 };
