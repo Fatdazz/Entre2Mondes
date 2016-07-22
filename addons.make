@@ -1,9 +1,11 @@
-ofxBoids
+
 ofxCv
+ofxXmlSettings
 ofxGui
 ofxKinect
+
 ofxNetwork
 ofxOpenCv
 ofxPostGlitch
 ofxProjectorBlend
-ofxXmlSettings
+ofxBoids
