@@ -10,7 +10,6 @@ public:
     
     void setup(camVideo *cam);
     void draw();
-    void drawAlex();
     void mirroredImage();
     
     vector<ofPolyline>& getContours();
@@ -25,15 +24,21 @@ public:
     cv::Mat    *image1, *image2;
     ofImage mirrored, imageImport;
     camVideo *camera;
-    bool        isImage;
+
     vector<vector<cv::Point>> contoursMask;
 
-	bool protection;
-
-	ofThreadChannel<vector<vector<cv::Point>>> analyzedFinder;
+	ofThreadChannel<int> channelMinArea;
+	int minArea{ 0 };
+	int maxArea{ 0 };
+	ofThreadChannel<int> channelMaxArea;
+	ofThreadChannel<ofColor> channelColor;
+	ofColor targetColor;
 	ofThreadChannel<ofParameter<int>> ROIH;
 	ofThreadChannel<ofParameter<int>> ROIY;
 	ofParameter<int> roiy;
 	ofParameter<int> roih;
+
+	ofThreadChannel<ofxCv::ContourFinder> c;
+	ofxCv::ContourFinder contoursBoxes;
 
 };

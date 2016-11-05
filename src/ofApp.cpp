@@ -27,7 +27,7 @@ void Entre2Mondes::setup() {
   // In it we store everything that will be projected on the boxes
   // also the things projected on the contours of the windows
   // and everything related to it
-  insideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight(),detector);
+  //insideWorld.setup(projectorOutput.getDisplayWidth(), projectorOutput.getCanvasHeight(),detector);
 
   // Initialize the outside world
   // This stores everything that will be projected on the windows
@@ -36,7 +36,7 @@ void Entre2Mondes::setup() {
     opencv.allocate(PROJECTOR_WIDTH, PROJECTOR_HEIGHT, OF_IMAGE_COLOR);
 
     ///////////////////////////////////// fichier vitre windowMask.load("vitres1.png");
-	  
+	redBall.position.y = 400;
 }
 
 
@@ -49,7 +49,7 @@ void Entre2Mondes::update(){
     }
 
   // Update inside world
-  insideWorld.update();
+  //insideWorld.update();
 
   // Update outside world
   outsideWorld.update();
@@ -57,33 +57,48 @@ void Entre2Mondes::update(){
 
 //--------------------------------------------------------------
 void Entre2Mondes::draw() {
-
+	ofSetBackgroundColor(ofColor::blue);
   projectorOutput.begin();
   // reset
   ofClear(0, 0);
     
-    if (detector->isImage) {
+    //if (detector->isImage) {
         ofxCv::toOf(detector->imageDouble, opencv);
         opencv.update();
-    }
+    //}
+
     ofFbo res;
     res.allocate(2*PROJECTOR_WIDTH, projectorOutput.getCanvasHeight());
     res.begin();
-    ofClear(255, 255, 255, 0);
+    ofClear(0, 0, 255, 0);
+	
     opencv.draw(0, 0);
     opencv.draw(opencv.getWidth(), 0);
     res.end();
-  // Draws inside world and outside world in the projector output
-  // The mask is used here  to draw the inside world correctly
-  // Draws inside world over outside world as well
-  mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
-  if (cam->isFrameNew()) {
-	  //detector->draw();
-  }
+    // Draws inside world and outside world in the projector output
+    // The mask is used here  to draw the inside world correctly
+    // Draws inside world over outside world as well
+    // mask.applyMaskToFbo(insideWorld.insideWorld, outsideWorld.outsideWorld, res).draw(0, 0);
+	//outsideWorld.draw();
+
   projectorOutput.end();
 
   // Draw the final result
-  projectorOutput.draw();
+  //projectorOutput.draw();
+  ofSetColor(ofColor::red);
+  if (redBall.movingRight) {
+	  redBall.position += ofPoint(75, 0);
+	  if (redBall.position.x > (ofGetWindowWidth() - 300)) {
+		  redBall.movingRight = false;
+	  }
+  }
+  else {
+	  redBall.position -= ofPoint(75, 0);
+	  if (redBall.position.x <= 300) {
+		  redBall.movingRight = true;
+	  }
+  }
+  ofDrawCircle	  (redBall.position, 300);
 }
 
 //--------------------------------------------------------------

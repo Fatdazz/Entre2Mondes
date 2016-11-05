@@ -25,27 +25,29 @@ void BoxDetector::setup(camVideo *cam) {
 	finder_1.setFindHoles(true);
     finder_1.findContours(imageFondImport);
     
-        imageFond = cv::Mat::zeros(imageImport.getHeight(), imageImport.getWidth(), CV_8UC1);
+    imageFond = cv::Mat::zeros(imageImport.getHeight(), imageImport.getWidth(), CV_8UC1);
         
-		const size_t variable = finder_1.getContours().size();
-		cv::Point** temp = new cv::Point*[variable];
-		int* npt = new int[variable];
+	const size_t num_contours = finder_1.getContours().size();
+	cv::Point** temp = new cv::Point*[num_contours];
+	int* npt = new int[num_contours];
         
-        for (int i=0; i<variable; i++) {
+    for (int i=0; i<num_contours; i++) {
             npt[i]=finder_1.getContours()[i].size();
             temp[i]= new cv::Point[npt[i]];
-	    for (int j=0; j<npt[i]; j++) {
+	for (int j=0; j<npt[i]; j++) {
 	      temp[i][j] = finder_1.getContours()[i][j];
 	    }
 	}
             
-	cv::fillPoly( imageFond, (const cv::Point**)temp, npt, variable, cv::Scalar( 255, 255, 255 ), 18 );
+	cv::fillPoly( imageFond, (const cv::Point**)temp, npt, num_contours, cv::Scalar( 255, 255, 255 ), 18 );
 
 	finder_1.setThreshold(150);
 	finder_1.setMinAreaRadius(50);
 	finder_1.setMaxAreaRadius(500);
 	finder_1.setUseTargetColor(true);
 	finder_1.setTargetColor(ofColor::white, ofxCv::TRACK_COLOR_SV);
+	finder_1.getTracker().setPersistence(30);
+	finder_1.getTracker().setMaximumDistance(50);
 	camera=cam;
 	mirrored.allocate(cam->getWidth(), cam->getHeight(), OF_IMAGE_COLOR);
 	mirrored.setUseTexture(false);
@@ -54,9 +56,9 @@ void BoxDetector::setup(camVideo *cam) {
 	finder_2.setMaxAreaRadius(500);
 	finder_2.setUseTargetColor(false);
 	finder_2.setFindHoles(true);
-    
 
-	for (size_t i = 0; i < variable; i++)
+
+    for (size_t i = 0; i < num_contours; i++)
 	  {
 	    delete temp[i];
 	  }
@@ -71,15 +73,22 @@ void BoxDetector::threadedFunction() {
 
 	  ROIH.tryReceive(roih);
 	  ROIY.tryReceive(roiy);
+	  channelColor.tryReceive(targetColor);
+	  //finder_1.setTargetColor(targetColor);
+	  channelMinArea.tryReceive(minArea);
+	  finder_1.setMinAreaRadius(minArea);
+	  channelMaxArea.tryReceive(maxArea);
+	  finder_1.setMaxAreaRadius(maxArea);
 
 	  cv::Rect roi(0, roiy, camera->getWidth(), roih);
 
-    mirroredImage();
+      mirroredImage();
             
     cv::Mat mat = ofxCv::toCv(mirrored);
 	mat = mat(roi);
             
     finder_1.findContours(mat); // detection cam
+	
             
     imageContour = cv::Mat::zeros(camera->getHeight(), camera->getWidth(), CV_8UC1); // mise a zero la matrix
                 
@@ -91,7 +100,7 @@ void BoxDetector::threadedFunction() {
       npt[i] = finder_1.getContours()[i].size();
       temp[i] = new cv::Point[npt[i]];
       for (int j = 0; j<npt[i]; j++) {
-	temp[i][j] = finder_1.getContours()[i][j];
+	    temp[i][j] = finder_1.getContours()[i][j];
       }
     }
                 
@@ -115,15 +124,12 @@ void BoxDetector::threadedFunction() {
     cv::resize(imageContour, t, imageFond.size());
     imageDouble= t + imageFond;
      // imageDouble = imageFond;
-    isImage=false;
     //imageDouble=imageContour;
-    isImage=true;
     // detection sur imageDouble
     contours.clear();
-    protection = true;
     finder_2.findContours(imageDouble);
-    contoursMask = finder_2.getContours();
-    analyzedFinder.send(contoursMask);
+
+	c.send(finder_1);
 
     for (size_t i = 0; i < variable; i++)
       {
@@ -138,23 +144,30 @@ void BoxDetector::threadedFunction() {
 void BoxDetector::mirroredImage(){
 	if (camera->isFrameNew()) {
 		mirrored.setFromPixels(camera->getPixels());
+		mirrored.mirror(false, false); // a remettre en true, true
 	}
-  
-	mirrored.mirror(true, true);
 }
 
 void BoxDetector::draw() {
 
-  vector<vector<cv::Point>> tmp;
-  analyzedFinder.tryReceive(tmp);
-  ofSetColor(ofColor::green);
-  for (int i = 0; i < tmp.size(); i++) {
-    for (int j = 0; j < tmp[i].size(); j++) {
+	c.tryReceive(contoursBoxes);
+	contoursBoxes.draw();
 
-      ofDrawCircle(tmp[i][j].x, tmp[i][j].y, 2);
-    }
-  }
+	auto& tracker = contoursBoxes.getTracker();
+	for (int i = 0; i < contoursBoxes.size(); i++) {
+		if (contoursBoxes.size()) {
+			ofPoint center = ofxCv::toOf(contoursBoxes.getCenter(i));
+			ofPushMatrix();
+			ofTranslate(center.x, center.y);
+			int label = contoursBoxes.getLabel(i);
+			string msg = ofToString(label) + ":" + ofToString(tracker.getAge(label));
+			ofDrawBitmapString(msg, 0, 0);
+			ofPopMatrix();
+		}
+	}
+
 }
+
 
 vector<ofPolyline>& BoxDetector::getContours() {
   return contours;

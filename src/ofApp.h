@@ -62,4 +62,11 @@ class Entre2Mondes : public ofBaseApp{
   ofImage        opencv; // image alex
   
 
+  struct MovingBall {
+	  bool movingRight = true;
+	  ofPoint position;
+  };
+
+  MovingBall redBall;
+
 };

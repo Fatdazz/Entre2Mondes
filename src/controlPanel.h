@@ -10,7 +10,6 @@
 #include "Camera.h"
 
 
-
 class ControlPanel : public ofBaseApp {
 public:
 
@@ -38,11 +37,15 @@ public:
 	ofParameter<bool> trackHS;
 	ofParameter<bool> trackH;
 	ofParameter<bool> trackHSB;
+	ofParameter<bool> trackSB;
 	ofParameter<bool> trackRGB;
 
-	ofParameter<int> h;
-	ofParameter<int> s;
-	ofParameter<int> b;
+	ofParameter<float> minAreaRadius;
+	ofParameter<float> maxAreaRadius;
+
+	ofParameter<float> h;
+	ofParameter<float> s;
+	ofParameter<float> b;
 
 	ofParameter<int> ROIH;
 	ofParameter<int> ROIY;

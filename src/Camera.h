@@ -23,12 +23,13 @@ public:
     #if Cam == 0
     ofxKFW2::Device kinect;
     camVideo(){
-		videoWidth = 1920;  // try to grab at this size.
+		videoWidth = 1920;
 		videoHeight = 1080;
         kinect.open();
         kinect.initDepthSource();
         kinect.initColorSource();
         kinect.initInfraredSource();
+		kinect.initLongExposureInfraredSource();
         kinect.initBodySource();
         kinect.initBodyIndexSource();
     };
@@ -37,6 +38,10 @@ public:
     void draw(int _x, int _y){
 		kinect.getColorSource()->draw(_x,_y);
     }
+
+	void drawDepth(int _x, int _y) {
+		kinect.getLongExposureInfraredSource()->draw(_x, _y);
+	}
     
     bool isFrameNew(){
         return kinect.isFrameNew();
@@ -44,9 +49,15 @@ public:
     ofPixels& getPixels(){
         return kinect.getColorSource()->getPixels();
     }
+
+	ofShortPixels& getDepthPixels() {
+		return kinect.getInfraredSource()->getPixels();
+	}
+
     void update(){
         kinect.update();
     }
+
     #else
     ofVideoGrabber cam;
     camVideo(){
@@ -71,6 +82,8 @@ public:
     void draw(int _x, int _y){
         cam.draw(_x, _y);
     }
+
+
     
     bool isFrameNew(){
         return cam.isFrameNew();

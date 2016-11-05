@@ -33,7 +33,7 @@ int main( ){
 	// Settings for window with controls
 	windowSettings.width = 640;
 	windowSettings.height = 480;
-	windowSettings.setPosition(ofVec2f(PROJECTOR_WIDTH *2 + 100, 100));
+	windowSettings.setPosition(ofVec2f(0, 100/* PROJECTOR_WIDTH * 2 + 100, 100*/));
 	windowSettings.resizable = true;
 	//windowSettings.shareContextWith = mainWindow;
 

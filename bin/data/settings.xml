@@ -1,4 +1,16 @@
 <group>
-	<ROI_H>464</ROI_H>
-	<ROI_Y>388</ROI_Y>
+	<ROI_H>0</ROI_H>
+	<ROI_Y>0</ROI_Y>
+<group/>
+	<Threshold>30.6</Threshold>
+	<Track_Hue>0</Track_Hue>
+	<Track_Hue_Saturation>0</Track_Hue_Saturation>
+	<Track_Hue_Saturation_Brightness>0</Track_Hue_Saturation_Brightness>
+	<Track_Saturation_Brightness>1</Track_Saturation_Brightness>
+	<Track_Red_Green_Blue>0</Track_Red_Green_Blue>
+	<Hue_value>133.45</Hue_value>
+	<Saturation_value>103.659</Saturation_value>
+	<Brightness_value>246</Brightness_value>
+	<Min_area_radius>16.5</Min_area_radius>
+	<Max_area_radius>295</Max_area_radius>
 </group>
